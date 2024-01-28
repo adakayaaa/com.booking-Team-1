@@ -77,11 +77,12 @@ public class FlightsHomePage extends BaseStep {
         then(PAGES.getFlightsDetailsPage().getTitleOfDetailsPage()).isEqualTo(headerText).withFailMessage("The user couldn't pass on the detail page!");
     }
 
-
-    @And("The user should see that only list of departure countries and return countries are displayed")
-    public void theUserShouldSeeThatOnlyListOfDepartureCountriesAndReturnCountriesAreDisplayed() {
-
+    @And("The user should see that only list of {string} and {string} are displayed")
+    public void theUserShouldSeeThatOnlyListOfAndAreDisplayed(String departureCountry, String arrivalCountry) {
+        then(PAGES.getFlightsDetailsPage().isSelectedDepartureCountry(departureCountry)).isTrue();
+        then(PAGES.getFlightsDetailsPage().isSelectedArrivalCountry(arrivalCountry)).isTrue();
     }
+
 
     @And("The user should see that only round way on the tickets")
     public void theUserShouldSeeThatOnlyRoundWayOnTheTickets() {
@@ -94,5 +95,7 @@ public class FlightsHomePage extends BaseStep {
     public void theUserShouldSeeThatOnlyListOfIsDisplayed(String departureDate) {
         then(PAGES.getFlightsDetailsPage().isDepartureDate(departureDate)).isTrue().withFailMessage("The day is not departure day!");
     }
+
+
 }
 

@@ -34,7 +34,7 @@ Feature: Flight Tab
     And The user clicks on the search flights button
 
     Then The user should see that "Find your next flight" header text message is displayed
-    And The user should see that only list of departure countries and return countries are displayed
+    And The user should see that only list of "<departure country>" and "<return country>" are displayed
     And The user should see that only list of "<departure date>" is displayed
     And The user should see that only round way on the tickets
    Examples:
