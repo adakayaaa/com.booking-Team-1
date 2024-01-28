@@ -23,7 +23,7 @@ public class FlightsHomePage extends BasePage {
     @FindBy(css = ".headerSearchText")
     private List<WebElement> datePickerAndPeopleTabs;
 
-    @FindBy(css=".headerBtn")
+    @FindBy(css=".headerSearchItem>.headerBtn")
     private WebElement searchFlightsButton;
 
     @FindBy(css = ".rdrNextPrevButton")

@@ -20,7 +20,6 @@ Feature: Flight Tab
   Scenario:
 
     When the user clicks on the Flights tab
-
     Then the user should see that "Find your next flight" message.
 
  Scenario Outline: Verification of Flights Home Page tabs
@@ -34,12 +33,13 @@ Feature: Flight Tab
     And The user clicks on the search flights button
 
     Then The user should see that "Find your next flight" header text message is displayed
-    And The user should see that only list of departure countries and return countries are displayed
+    And The user should see that only list of "<departure country>" and "<return country>" are displayed
     And The user should see that only list of "<departure date>" is displayed
     And The user should see that only round way on the tickets
    Examples:
      | departure country | return country | departure date | return date | adult number | children number |
      | USA               | Italy          | 5              | 12          | 20           | 15              |
+     | Italy             | USA            | 2              | 5           | 4            | 1               |
 
 
   Scenario:
