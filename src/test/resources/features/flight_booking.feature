@@ -20,7 +20,6 @@ Feature: Flight Tab
   Scenario:
 
     When the user clicks on the Flights tab
-
     Then the user should see that "Find your next flight" message.
 
  Scenario Outline: Verification of Flights Home Page tabs
@@ -40,6 +39,7 @@ Feature: Flight Tab
    Examples:
      | departure country | return country | departure date | return date | adult number | children number |
      | USA               | Italy          | 5              | 12          | 20           | 15              |
+     | Italy             | USA            | 2              | 5           | 4            | 1               |
 
 
   Scenario:
