@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
 //                "rerun:target/rerun.txt"
 //        },
         features = "src/test/resources/features",
-        glue = "stepDefinitions",
+        glue = "step_defs",
         tags = "@example",
         dryRun = false
 )

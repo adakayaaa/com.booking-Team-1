@@ -8,70 +8,55 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.io.File;
-import java.util.HashMap;
-
 public class DriverManager {
-    private static final ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
 
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL_DRIVER = new ThreadLocal<>();
 
     private DriverManager() {
-        // Private constructor to prevent instantiation
+        throw new UnsupportedOperationException("You cannot object of utils.DriverManager");
     }
 
-    /**
-     * Retrieves the WebDriver instance for the current thread. If the instance doesn't exist, it creates a new one based on the configured browser.
-     *
-     * @return the WebDriver instance
-     */
-    public synchronized static WebDriver getDriver() {
+    public static WebDriver getWebDriver() {
+        return getWebDriver(System.getProperty("browser", "chrome"));
+    }
 
-        if (DRIVER_POOL.get() == null) {
-
-            String browser = ConfigManager.getProperty("browser").toLowerCase();
-
-            switch (browser) {
-                case "chrome" -> {
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--start-maximized");
-                    chromeOptions.addArguments("--allow-running-insecure-content");
-                    chromeOptions.addArguments("--ignore-certificate-errors");
-                    //chromeOptions.setAcceptInsecureCerts(true);
-                    String downloadPath = System.getProperty("user.dir") + File.separator + "Downloads";
-                    HashMap<String, Object> chromePrefs = new HashMap<>();
-                    chromePrefs.put("download.default_directory", downloadPath);
-                    chromeOptions.setExperimentalOption("prefs", chromePrefs);
-                    DRIVER_POOL.set(new ChromeDriver(chromeOptions));
-                }
+    public static WebDriver getWebDriver(String browserType) {
+        WebDriver driver;
+        if (THREAD_LOCAL_DRIVER.get() == null) {
+            switch (browserType.toLowerCase()) {
                 case "firefox" -> {
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    //firefoxOptions.addArguments("--start-maximized");
-                    firefoxOptions.addArguments("--allow-running-insecure-content");
-                    firefoxOptions.addArguments("--ignore-certificate-errors");
-                    DRIVER_POOL.set(new FirefoxDriver());
+                    firefoxOptions.addArguments("--width-1920");
+                    firefoxOptions.addArguments("--height-1080");
+                    driver = new FirefoxDriver(firefoxOptions);
                 }
                 case "edge" -> {
                     EdgeOptions edgeOptions = new EdgeOptions();
                     edgeOptions.addArguments("--start-maximized");
-                    edgeOptions.addArguments("--allow-running-insecure-content");
-                    edgeOptions.addArguments("--ignore-certificate-errors");
-                    DRIVER_POOL.set(new EdgeDriver(edgeOptions));
+                    edgeOptions.addArguments("--ignore-certificate-error");
+                    driver = new EdgeDriver(edgeOptions);
                 }
-                default -> throw new RuntimeException("Wrong browser name !");
+
+                default -> {
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--start-maximized");
+                    chromeOptions.addArguments("--ignore-certificate-error");
+                    driver = new ChromeDriver(chromeOptions);
+                }
             }
+            driver.get("https://InarAcademy:Fk160621.@test.inar-academy.com");
+            THREAD_LOCAL_DRIVER.set(driver);
         }
-        return DRIVER_POOL.get();
+
+        return THREAD_LOCAL_DRIVER.get();
     }
 
-    /**
-     * Closes the WebDriver instance and removes it from the pool.
-     */
     public static void closeDriver() {
-        if (DRIVER_POOL != null) {
-            DRIVER_POOL.get().quit();
-            DRIVER_POOL.remove();
+        WebDriver driver = DriverManager.getWebDriver();
+        if (driver != null) {
+            driver.quit();
+            THREAD_LOCAL_DRIVER.remove();
         }
     }
+
 }
-
-
