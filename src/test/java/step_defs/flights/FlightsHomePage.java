@@ -1,9 +1,10 @@
-package step_defs;
+package step_defs.flights;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import step_defs.BaseStep;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
