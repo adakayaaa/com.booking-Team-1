@@ -87,7 +87,6 @@ public class FlightsHomePage extends BaseStep {
     @And("The user should see that only round way on the tickets")
     public void theUserShouldSeeThatOnlyRoundWayOnTheTickets() {
         then(PAGES.getFlightsDetailsPage().isRoundType()).isTrue().withFailMessage("The type of trip is not round!");
-        BrowserUtils.wait(4);
     }
 
 
