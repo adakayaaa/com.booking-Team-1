@@ -7,10 +7,15 @@ import pages.BasePage;
 import java.util.List;
 
 public class CarRentalsFilteringPage extends BasePage {
+
+    private String brandOfSelectedCar;
+
+    private double priceOfSelectedCar;
+
     @FindBy(css = "[placeholder='Enter pickup location']")
     private WebElement pickupLocationTextField;
     @FindBy(css = ".position-relative")
-    private List<WebElement> pickedUpAndDrpOffDates;
+    private List<WebElement> pickedUpAndDropOffDates;
 
     @FindBy(css = ".lsCheckboxInput")
     private List<WebElement> checkBoxes;
@@ -30,6 +35,12 @@ public class CarRentalsFilteringPage extends BasePage {
     @FindBy(css = ".lrb-btn")
     private List<WebElement> heighestAndLowestButtons;
 
+    @FindBy(css = ".mt-2.btn-blue")
+    private List<WebElement> viewDealButtons;
+
+    @FindBy(css = ".carRentalItemDetails > h3")
+    private List<WebElement> brandsOfCars;
+
 
 
     public void enterPickupLocation(String pick_up_location){
@@ -41,11 +52,11 @@ public class CarRentalsFilteringPage extends BasePage {
     }
 
     public boolean arePickedUpDatesMatch(String expectedDate) {
-        return pickedUpAndDrpOffDates.get(0).getAttribute("value").equals(expectedDate);
+        return pickedUpAndDropOffDates.get(0).getAttribute("value").equals(expectedDate);
     }
 
     public boolean areDropOffUpDatesMatch(String expectedDate) {
-        return pickedUpAndDrpOffDates.get(1).getAttribute("value").equals(expectedDate);
+        return pickedUpAndDropOffDates.get(1).getAttribute("value").equals(expectedDate);
     }
 
     public void selectTheCheckBoxWithParameter(String boxValue) {
@@ -145,6 +156,20 @@ public class CarRentalsFilteringPage extends BasePage {
             }
         }
         return true;
+    }
+
+    public void clickOnTheViewDealButton(int index){
+        brandOfSelectedCar = brandsOfCars.get(index).getText();
+        priceOfSelectedCar = getPricesOfFilteredCars(pricesOfTheFilteredCars).get(index);
+        viewDealButtons.get(index).click();
+    }
+
+    public String getBrandOfSelectedCarInFilteringPage(){
+        return brandOfSelectedCar;
+    }
+
+    public double getPriceOfSelectedCarInFilteringPage(){
+        return priceOfSelectedCar;
     }
 
 }

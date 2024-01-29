@@ -81,4 +81,10 @@ public class CarRentalFilteringPage extends BaseStep {
         LOGGER.debug("The user validates that cars are sorted from lowest to heighest");
     }
 
+    @And("The user clicks View Dial button of the #{int} element")
+    public void theUserClicksViewDialButtonOfTheFirstElement(int index) {
+        PAGES.getCarRentalsFilteringPage().clickOnTheViewDealButton(index);
+        LOGGER.info("The user clicks View Dial button of the first element");
+    }
+
 }

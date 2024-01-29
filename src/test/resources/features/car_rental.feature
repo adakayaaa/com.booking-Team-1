@@ -85,14 +85,16 @@ Feature: Car Rental Tab
 
 
   Scenario Outline: Validate that the chosen car in the filtering page can be booked successfully with valid credentials
-    When When The user clicks on the Booking link
+    When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
     And The user clicks on the search button
-    And The user enters "<pick_up_location>","<price_rance>","<transmission>" and "<car_category>"
+    And The user enters "<pick_up_location>","<price_range>","<car_spec>","<transmission>" and "<car_category>"
     And The user clicks on search button in filtering page
-    And The user clicks View Dial button of the first element
+    And The user clicks View Dial button of the #1 element
     Then The user validates that the name of selected car is true
-    And The user validates that "<pick_up_location>","<price_rance>","<transmission>" and "<car_category>" ofdisplayed car in detail_page matches with the selected car in filtering_page
+    And The user validates that "<pick_up_location>", price, "<transmission>" and "<car_category>" of displayed car in detail_page matches with the selected car in filtering_page
+
+
     And The user validates that total_price calculation is true
 
     When The user clicks on the What is covered button
@@ -115,8 +117,9 @@ Feature: Car Rental Tab
     When The user clicks on the close button
     Then The user navigates to Booking home page
     Examples:
-      | pick_up_location | price_rance | transmission | car_category | firstName | lastName |
-      | Heathrow Airport | $0-50       | Manual       | Small        | Gurol     | Gokyar   |
+      | pick_up_location | price_range | car_spec               | transmission | car_category | firstName | lastName |
+      | Heathrow Airport | 0-50        | Bluetooth Connectivity | Manual       | Small        | Gurol     | Gokyar   |
+
 
   Scenario Outline: Validate true error messages are displayed in checkout page
     When The user clicks on the Booking link
