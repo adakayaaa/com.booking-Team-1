@@ -17,118 +17,70 @@ Feature: Flight Tab
     Given the user is on the Inar Academy homepage
     And the user clicks on the Booking link
 
+#  Scenario:
+#
+#    When the user clicks on the Flights tab
+#    Then the user should see that "Find your next flight" message.
+#
+#  Scenario Outline: Verification of Flights Home Page tabs
+#    Given The user is on the flights page
+#
+#    When The user clicks on the round way radio
+#    And The user selects departure as a "<departure country>"
+#    And The user selects return as a "<return country>"
+#    And The user selects departure date as "<departure date>" and return date as "<return date>"
+#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
+#    And The user clicks on the search flights button
+#
+#    Then The user should see that "Find your next flight" header text message is displayed
+#    And The user should see that only list of "<departure country>" and "<return country>" are displayed
+#    And The user should see that only list of "<departure date>" is displayed
+#    And The user should see that only round way on the tickets
+#    Examples:
+#      | departure country | return country | departure date | return date | adult number | children number |
+#      | USA               | Italy          | 5              | 12          | 20           | 15              |
+#      | Italy             | USA            | 2              | 5           | 4            | 1               |
+#
+#
+#  Scenario:
+#    Given The user is on the flights page
+#
+#    When The user clicks on the round way radio
+#    And The user selects departure as a "USA"
+#    And The user selects return as a "Italy"
+#    And The user selects departure date as "5" and return date as "12"
+#    And The user determines adult number as "2" and children number as  "3"
+#    And The user clicks on the search flights button
+#    And The user clicks on the cheapest tab
+#    Then The user should see that fees of tickets are arranged from cheapest to highest
+#
+#    When The user click on fastest tab
+#    Then The user should see that times of flights are arranged from fastest to slowest
+#
+#    When The user selects from checkbox "Economy" in the cabin class
+#    Then The user should see only "Economy" on the tickets
+
+
   Scenario:
-
-    When the user clicks on the Flights tab
-    Then the user should see that "Find your next flight" message.
-
-  Scenario Outline: Verification of Flights Home Page tabs
     Given The user is on the flights page
 
     When The user clicks on the round way radio
-    And The user selects departure as a "<departure country>"
-    And The user selects return as a "<return country>"
-    And The user selects departure date as "<departure date>" and return date as "<return date>"
-    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-    And The user clicks on the search flights button
-
-    Then The user should see that "Find your next flight" header text message is displayed
-    And The user should see that only list of "<departure country>" and "<return country>" are displayed
-    And The user should see that only list of "<departure date>" is displayed
-    And The user should see that only round way on the tickets
-    Examples:
-      | departure country | return country | departure date | return date | adult number | children number |
-      | USA               | Italy          | 5              | 12          | 20           | 15              |
-      | Italy             | USA            | 2              | 5           | 4            | 1               |
-
-
-  Scenario:
-    Given The user is on the flights page
-    And The user clicks on the round way radio
     And The user selects departure as a "USA"
     And The user selects return as a "Italy"
-    And The user selects departure date as "5" and return date as "12"
-    And The user determines adult number as "2" and children number as  "3"
+    And The user selects departure date as "12" and return date as "15"
+    And The user determines adult number as "3" and children number as  "2"
     And The user clicks on the search flights button
-
-    When The user clicks on the cheapest tab
-
-    Then The user should see that fees of tickets are arranged from cheapest to highest
-
+    And The user selects from checkbox "Business" in the cabin class
+    And The user click on cheapest tab
+    And The user click on cheapest ticket
+    Then The user should see return ticket button"Select Return Ticket"
     When The user click on fastest tab
-
     Then The user should see that times of flights are arranged from fastest to slowest
 
+    When The user selects return ticket on the fastest flight
+    Then The user should see title of the result page "Choose your fare"
+#    And The user should see that the ticket prices as expected on the mains
 
-    When The user selects from checkbox "Economy" in the cabin class
-
-    Then The user should see only "Economy" on the tickets
-
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#
-#    When The user clicks on the cheapest tab
-#
-#    Then The user should see that fees of tickets are arranged from cheapest to highest
-#
-#
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And The user clicks on the cheapest tab
-#
-#    When The user click on cheapest ticket
-#
-#    Then The user should see that select return ticket button
-#
-#
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And TThe user click on cheapest tab
-#    And The user click on cheapest ticket
-#
-#    When The user click on fastest tab
-#
-#    Then The user should see that times of flights are arranged from fastest to slowest
-#
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And TThe user click on cheapest tab
-#    And The user click on cheapest ticket
-#
-#    When The user click on fastest tab
-#    And The user selects return ticket on the fastest flight
-#
-#    Then The user should see "Choose your fare"
-#
-#
 #  Scenario:
 #    Given The user is on the flights page
 #    And The user clicks on the round way radio

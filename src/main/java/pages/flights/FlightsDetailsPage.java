@@ -9,7 +9,6 @@ import utils.BrowserUtils;
 import java.util.List;
 
 public class FlightsDetailsPage extends BasePage {
-
     @FindBy(css = "h1.headerTitle")
     private WebElement titleOfDetailsPage;
 
@@ -34,6 +33,9 @@ public class FlightsDetailsPage extends BasePage {
     private List<WebElement> flightCabinTypes;
     @FindBy(xpath = "//div[@class='searchItem flightItem']//span[@class='siCancelOpSubtitle']")
     private List<WebElement> cabinClassOnTickets;
+
+    @FindBy(css = ".flight-button")
+    private List<WebElement> selectTicketButton;
 
     public String getTitleOfDetailsPage() {
         return titleOfDetailsPage.getText();
@@ -61,6 +63,7 @@ public class FlightsDetailsPage extends BasePage {
 
     public void clickOnCheapestTab() {
         cheapestAndFastestAndAllButtons.get(0).click();
+
     }
 
     public void clickOnFastestTab() {
@@ -129,5 +132,21 @@ public class FlightsDetailsPage extends BasePage {
             return cabinClassOnTickets.stream().allMatch(ticket -> ticket.getText().contains(classType));
         }
     }
+
+    public void clickOnSelectTicketButton() {
+        selectTicketButton.get(0).click();
+
+    }
+
+    public String getTextOfSelectReturnTicket() {
+        return selectTicketButton.get(0).getText();
+    }
+
+    public int getTicketPrice() {
+        List<Integer> prices = flightPrices.stream().map(price -> Integer.parseInt(price.getText().substring(1))).toList();
+        System.out.println(prices.get(0));
+        return prices.get(0);
+    }
+
 
 }
