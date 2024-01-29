@@ -80,11 +80,11 @@ Feature: Car Rental Tab
 
     Examples:
       | pick_up_location | price_range | car_spec               | transmission | car_category |
-      | Heathrow Airport | $0-50       | Bluetooth Connectivity | Manual       | Small        |
-      | Central Park     | $50-100     | Leather Seats          | Manual       | Medium       |
-      | Grand Bazaar     | $100-150    | Sunroof                | Automatic    | Large        |
-      | Taj Mahal        | $50-100     | Keyless Entry          | Automatic    | Minivan      |
-      | Machu Picchu     | $50-100     | Backup Camera          | Automatic    | SUV          |
+      | Heathrow Airport | 0-50        | Bluetooth Connectivity | Manual       | Small        |
+      | Central Park     | 50-100      | Leather Seats          | Manual       | Medium       |
+      | Grand Bazaar     | 100-150     | Sunroof                | Automatic    | Large        |
+      | Taj Mahal        | 50-100      | Keyless Entry          | Automatic    | Minivan      |
+      | Machu Picchu     | 50-100      | Backup Camera          | Automatic    | SUV          |
 
 
   Scenario Outline: Validate that the chosen car in the filtering page can be booked successfully with valid credentials
