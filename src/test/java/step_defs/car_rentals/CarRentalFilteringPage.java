@@ -2,6 +2,7 @@ package step_defs.car_rentals;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import step_defs.BaseStep;
@@ -44,7 +45,40 @@ public class CarRentalFilteringPage extends BaseStep {
     @Then("The user validates that {string},{string},{string} and {string} matches with displayed cars' information")
     public void theUserValidatesThatAndMatchesWithDisplayedCarsInformation
             (String pick_up_location, String price_range, String transmission, String car_category) {
+        then(PAGES.getCarRentalsFilteringPage().arePickedUpLocationsOfFilteredCarsMatch(pick_up_location)).isTrue();
         then(PAGES.getCarRentalsFilteringPage().areThePricesOfTheFilteredCarsInTheSelectedPriceRage(price_range)).isTrue();
-        
+        then(PAGES.getCarRentalsFilteringPage().areTransmissionsOfFilteredCarsMatch(transmission)).isTrue();
+        then(PAGES.getCarRentalsFilteringPage().areCategoriesOfFilteredCarsMatch(car_category)).isTrue();
+        LOGGER.debug("The user validates that all of information match with selected boxes");
+
+
     }
+
+    @When("The user clicks on price highest sort button")
+    public void theUserClicksOnPriceHighestSortButton() {
+        PAGES.getCarRentalsFilteringPage().clickOnTheHeighestButton();
+        LOGGER.info("The user clicks on price highest sort button");
+    }
+
+
+    @Then("The user validates that cars are sorted from highest to lowest")
+    public void theUserValidatesThatCarsAreSortedFromHighestToLowest() {
+        then(PAGES.getCarRentalsFilteringPage().areAllPricesArrangedFromHeighestToLowest()).isTrue();
+        LOGGER.debug("The user validates that cars are sorted from highest to lowest");
+    }
+
+
+    @When("The user clicks on price lowest sort button")
+    public void theUserClicksOnPriceLowestSortButton() {
+        PAGES.getCarRentalsFilteringPage().clickOnTheLowestButton();
+        LOGGER.info("The user clicks on price lowest sort button");
+    }
+
+
+    @Then("The user validates that cars are sorted from lowest to highest")
+    public void theUserValidatesThatCarsAreSortedFromLowestToHighest() {
+        then(PAGES.getCarRentalsFilteringPage().areAllPricesArrangedFromLowestToHeighest()).isTrue();
+        LOGGER.debug("The user validates that cars are sorted from lowest to heighest");
+    }
+
 }
