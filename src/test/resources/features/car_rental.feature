@@ -96,7 +96,7 @@ Feature: Car Rental Tab
     And The user clicks on search button in filtering page
     And The user clicks View Dial button of the first element
     Then The user validates that the name of selected car is true
-    And The user validates that "<pick_up_location>","<price_rance>","<transmission>" and "<car_category>" of displayed car in detail_page matches with the selected car in filtering_page
+    And The user validates that "<pick_up_location>","<price_rance>","<transmission>" and "<car_category>" ofdisplayed car in detail_page matches with the selected car in filtering_page
     And The user validates that total_price calculation is true
 
     When The user clicks on the What is covered button
