@@ -62,13 +62,14 @@ Feature: Car Rental Tab
 
 
   Scenario Outline: Validate that the car in the filtering page matches with entered criteria
-    When The user clicks on the Booking link
+    When When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
     And The user clicks on the search button
     And The user enters "<pick_up_location>","<price_range>","<car_spec>","<transmission>" and "<car_category>"
     And The user clicks on search button in filtering page
     Then The user validates that "<pick_up_location>" matches with displayed cars' information
     And The user validates that "<price_range>" matches with displayed cars' information
+    And The user validates that "<car_spec>" matches with displayed cars' information
     And The user validates that "<transmission>" matches with displayed cars' information
     And The user validates that "<car_category>" matches with displayed cars' information
 
