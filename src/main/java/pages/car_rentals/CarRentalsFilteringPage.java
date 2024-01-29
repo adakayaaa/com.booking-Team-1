@@ -7,9 +7,8 @@ import pages.BasePage;
 import java.util.List;
 
 public class CarRentalsFilteringPage extends BasePage {
-    @FindBy(css = "[placeholder = 'Enter pickup location']")
-    private WebElement enteredPickupLocation;
-
+    @FindBy(css = "[placeholder='Enter pickup location']")
+    private WebElement pickupLocationTextField;
     @FindBy(css = ".position-relative")
     private List<WebElement> pickedUpAndDrpOffDates;
 
@@ -19,8 +18,14 @@ public class CarRentalsFilteringPage extends BasePage {
     @FindBy(css = ".fs-1")
     private List<WebElement> pricesOfTheFilteredCars;
 
+    @FindBy(css = ".search-btn-car-rental > button")
+    private WebElement filteringPageSearchButton;
+    public void enterPickupLocation(String pick_up_location){
+        pickupLocationTextField.sendKeys(pick_up_location);
+    }
+
     public String getEnteredPickupLocation() {
-        return enteredPickupLocation.getAttribute("value");
+        return pickupLocationTextField.getAttribute("value");
     }
 
     public boolean arePickedUpDatesMatch(String expectedDate) {
@@ -38,6 +43,7 @@ public class CarRentalsFilteringPage extends BasePage {
             }
         });
     }
+
 
     public boolean isTheCheckBoxSelected(String boxValue) {
         boolean isSelected = false;
@@ -68,6 +74,9 @@ public class CarRentalsFilteringPage extends BasePage {
         }
 
         return true;
+    }
+    public void clickOnTheFilteringPageSearchButton(){
+        filteringPageSearchButton.click();
     }
 
 }

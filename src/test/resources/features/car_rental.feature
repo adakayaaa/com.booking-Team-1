@@ -67,10 +67,7 @@ Feature: Car Rental Tab
     And The user clicks on the search button
     And The user enters "<pick_up_location>","<price_range>","<car_spec>","<transmission>" and "<car_category>"
     And The user clicks on search button in filtering page
-    Then The user validates that "<pick_up_location>" matches with displayed cars' information
-    And The user validates that "<price_range>" matches with displayed cars' information
-    And The user validates that "<transmission>" matches with displayed cars' information
-    And The user validates that "<car_category>" matches with displayed cars' information
+    Then The user validates that "<pick_up_location>","<price_range>","<transmission>" and "<car_category>" matches with displayed cars' information
 
     When The user clicks on price highest sort button
     Then The user validates that cars are sorted from highest to lowest
