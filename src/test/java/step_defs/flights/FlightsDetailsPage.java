@@ -1,8 +1,10 @@
 package step_defs.flights;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import step_defs.BaseStep;
+import utils.BrowserUtils;
 
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -18,6 +20,7 @@ public class FlightsDetailsPage extends BaseStep {
         then(PAGES.getFlightsDetailsPage().isSortedFromCheapestToHighest()).isTrue().withFailMessage("Prices are not sorted!");
 
     }
+
 
     @When("The user click on fastest tab")
     public void theUserClickOnFastestTab() {
@@ -40,7 +43,33 @@ public class FlightsDetailsPage extends BaseStep {
 
     @Then("The user should see only {string} on the tickets")
     public void theUserShouldSeeOnlyOnTheTickets(String classType) {
-        then(PAGES.getFlightsDetailsPage().isEconomyCabin(classType)).isTrue().withFailMessage("The ticket type is not as expected!");
+        then(PAGES.getFlightsDetailsPage().isBusinessCabin(classType)).isTrue().withFailMessage("The ticket type is not as expected!");
 
     }
+
+    @And("The user click on cheapest tab")
+    public void theUserClickOnCheapestTab() {
+        BrowserUtils.scrollUpWithPageUp();
+        PAGES.getFlightsDetailsPage().clickOnCheapestTab();
+    }
+
+
+    @And("The user click on cheapest ticket")
+    public void theUserClickOnCheapestTicket() {
+        PAGES.getFlightsDetailsPage().clickOnSelectTicketButton();
+    }
+
+
+    @Then("The user should see return ticket button{string}")
+    public void theUserShouldSeeReturnTicketButton(String returnTicketText) {
+        then(PAGES.getFlightsDetailsPage().getTextOfSelectReturnTicket()).isEqualTo(returnTicketText).withFailMessage("The user couldn't select departure ticket!");
+    }
+
+
+    @When("The user selects return ticket on the fastest flight")
+    public void theUserSelectsReturnTicketOnTheFastestFlight() {
+    PAGES.getFlightsDetailsPage().clickOnSelectTicketButton();
+    }
+
+
 }
