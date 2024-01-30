@@ -43,7 +43,10 @@ public class FlightsResultPage extends BasePage {
 
     public void clickOnSelectWhoFlyingButton(){
         BrowserUtils.scrollDownWithPageDown();
+        BrowserUtils.scrollDownWithPageDown();
+        BrowserUtils.wait(1);
         selectWhoFlyingButton.click();
+        BrowserUtils.scrollUpWithPageUp();
         BrowserUtils.scrollUpWithPageUp();
     }
 

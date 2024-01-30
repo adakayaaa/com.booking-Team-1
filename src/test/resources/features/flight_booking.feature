@@ -88,100 +88,69 @@ Feature: Flight Tab
 
 #    And The user should see that the ticket prices as expected on the mains
 
-#  Scenario:
+#  Scenario Outline:
 #    Given The user is on the flights page
 #
 #    When The user clicks on the round way radio
 #    And The user selects departure as a "USA"
 #    And The user selects return as a "Italy"
 #    And The user selects departure date as "12" and return date as "15"
-#    And The user determines adult number as "3" and children number as  "2"
+#    And The user determines adult number as "1" and children number as  "0"
 #    And The user clicks on the search flights button
 #    And The user selects from checkbox "Business" in the cabin class
 #    And The user click on cheapest tab
 #    And The user click on cheapest ticket
 #    And The user click on fastest tab
 #    And The user selects return ticket on the fastest flight
-#
-#    When The user click on Select Who's flying button
+#    And The user click on Select Who's flying button
 #
 #    Then The user should see that "Who's flying?" text
 #    And The user should see that only "USA to Italy" and "Italy to USA" are displayed
 #    And The user should see that only "Round Trip" on the tickets
+#    And The user should see that taxes are calculated truly
+#
+#    When The user enters  as "<contact mail>" email and  as "<phone number>" phone number
+#    And The user enters as "<first name>" first name and as "<last name>" last name
+#    And The user select gender as "<gender>" and birthdate as "<year>" year and "<month>" month and "<day>" day
+#    And The user clicks on select extras button
+#
+#    Then The user should see "Extras For Your Flight" text
+#    Examples:
+#      | contact mail   | phone number | first name | last name | gender | year | month | day |
+#      | emir@gmail.com | 5474567896   | EMir       | Adamdır   | Male   | 1987 | 7     | 4   |
 
-
-  Scenario:
+  Scenario Outline:
     Given The user is on the flights page
-    And The user clicks on the round way radio
-    And The user selects departure as a "<departure country>"
-    And The user selects return as a "<return country>"
-    And The user selects departure date as "<departure date>" and return date as "<return date>"
-    And The user determines adult number as "<adult number>" and children number as  "<children number>"
+
+    When The user clicks on the round way radio
+    And The user selects departure as a "USA"
+    And The user selects return as a "Italy"
+    And The user selects departure date as "12" and return date as "15"
+    And The user determines adult number as "1" and children number as  "0"
     And The user clicks on the search flights button
-    And The user selects from checkbox "<type of cabin class>" in the cabin class
+    And The user selects from checkbox "Business" in the cabin class
     And The user click on cheapest tab
     And The user click on cheapest ticket
     And The user click on fastest tab
     And The user selects return ticket on the fastest flight
-    And The user click on "Select Who's flying" button
-
-    When The user enters  as "<contact mail>" email and  as "<phone number>" phone number
-    And The user enters as "<first name>" and as "<last name>"
-    And The user select gender
-    And The user select birth of date
+    And The user click on Select Who's flying button
+    And The user enters  as "<contact mail>" email and  as "<phone number>" phone number
+    And The user enters as "<first name>" first name and as "<last name>" last name
+    And The user select gender as "<gender>" and birthdate as "<year>" year and "<month>" month and "<day>" day
     And The user clicks on select extras button
 
-    Then The user should see "Extras For Your Flight" text
+    When The user selects as "<meal>"
+    Then The user should see price of "<meal>" should have been added to total price
 
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And TThe user click on cheapest tab
-#    And The user click on cheapest ticket
-#    And The user click on fastest tab
-#    And The user selects return ticket on the fastest flight
-#    And The user click on "Select Who's flying" button
-#    And The user enters  as "<contact mail>" email and  as "<phone number>" phone number
-#    And The user enters as "<first name>" and as "<last name>"
-#    And The user select gender
-#    And The user select birth of date
-#    And The user clicks on select extras button
-#
-#    When The user selects as "<meal>"
-#    Then The user should see price of meal should have been added to total price
-#
-#
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And TThe user click on cheapest tab
-#    And The user click on cheapest ticket
-#    And The user click on fastest tab
-#    And The user selects return ticket on the fastest flight
-#    And The user click on "Select Who's flying" button
-#    And The user enters  as "<contact mail>" email and  as "<phone number>" phone number
-#    And The user enters as "<first name>" and as "<last name>"
-#    And The user select gender
-#    And The user select birth of date
-#    And The user clicks on select extras button
-#    And The user selects as "<meal>"
-#
-#    When The user click on "Go To Checkout" button
-#
-#    Then The user should see "Cardholder's Name"
-#
+    When The user click on go to checkout button
+    Then The user should see that "Cardholder's Name" title of checkout page
+
+    Examples:
+      | contact mail   | phone number | first name | last name | gender | year | month | day | meal       |  |
+      | emir@gmail.com | 5474567896   | EMir       | Adamdır   | Male   | 1987 | 7     | 4   | Halal Meal |  |
+
+
+
 #  Scenario:
 #    Given The user on the check and pay page
 #    When The user enter as "<Cardholder's Name>"
