@@ -119,6 +119,7 @@ Feature: Flight Tab
 #      | contact mail   | phone number | first name | last name | gender | year | month | day |
 #      | emir@gmail.com | 5474567896   | EMir       | Adamdır   | Male   | 1987 | 7     | 4   |
 
+  @example
   Scenario Outline:
     Given The user is on the flights page
 

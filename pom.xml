@@ -85,7 +85,7 @@
                 <version>3.2.3</version>
                 <configuration>
                     <includes>
-                        <include>Runner.java</include>
+                        <include>CukesRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
