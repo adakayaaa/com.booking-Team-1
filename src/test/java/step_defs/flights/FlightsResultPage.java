@@ -17,7 +17,7 @@ public class FlightsResultPage extends BaseStep {
         then(PAGES.getFlightsResultPage().getTitleOfResultPage()).isEqualTo(titleOfResultPage).withFailMessage("The user couldn't select return ticket");
     }
 
-    @When("The user click on Select Who's flying button")
+    @And("The user click on Select Who's flying button")
     public void theUserClickOnSelectWhoSFlyingButton() {
         PAGES.getFlightsResultPage().clickOnSelectWhoFlyingButton();
     }
