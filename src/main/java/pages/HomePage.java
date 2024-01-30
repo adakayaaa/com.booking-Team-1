@@ -5,7 +5,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-
 	@FindBy(linkText = "Booking")
 	private WebElement bookingLink;
 

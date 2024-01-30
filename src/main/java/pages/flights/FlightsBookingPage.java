@@ -10,92 +10,98 @@ import javax.swing.text.html.CSS;
 import java.util.List;
 
 public class FlightsBookingPage extends BasePage {
-    @FindBy(css = "div.display-6")
-    private WebElement whosFlyingTitle;
 
-    @FindBy(css = "div.fw-semibold")
-    private WebElement flightPlaces;
+	@FindBy(css = "div.display-6")
+	private WebElement whosFlyingTitle;
 
-    @FindBy(xpath = "//span[@class=\"fs-3 mx-3\"]")
-    private WebElement typeOfTrip;
-    @FindBy(css = "input.form-control")
-    private List<WebElement> inputFields;
-    @FindBy(css = "select.form-select")
-    private List<WebElement> selectsTabs;
-    @FindBy(css = ".mb-3.fs-4.fw-bold>div>span")
-    private List<WebElement> pricesOfTicketOnTheBookingPage;
-    @FindBy(xpath = "(//h1[@class='fw-bold m-0']/span)[2]")
-    private WebElement totalPriceWithTaxes;
-    @FindBy(css = "button.btn-blue")
-    private WebElement selectExtrasButton;
+	@FindBy(css = "div.fw-semibold")
+	private WebElement flightPlaces;
 
-    public String getTitleOfBookingPage() {
-        return whosFlyingTitle.getText();
-    }
+	@FindBy(xpath = "//span[@class=\"fs-3 mx-3\"]")
+	private WebElement typeOfTrip;
 
-    public String getFromDepartureCountryToArrivalCountry() {
-        return flightPlaces.getText().substring(0, flightPlaces.getText().indexOf("-") - 1);
-    }
+	@FindBy(css = "input.form-control")
+	private List<WebElement> inputFields;
 
-    public String getFromArrivalCountryToDepartureCountry() {
-        return flightPlaces.getText().substring(flightPlaces.getText().indexOf("-") + 2);
-    }
+	@FindBy(css = "select.form-select")
+	private List<WebElement> selectsTabs;
 
-    public String getTextOfTripType() {
-        return typeOfTrip.getText();
-    }
+	@FindBy(css = ".mb-3.fs-4.fw-bold>div>span")
+	private List<WebElement> pricesOfTicketOnTheBookingPage;
 
-    public void enterEmail(String email) {
-        inputFields.get(0).sendKeys(email);
-    }
+	@FindBy(xpath = "(//h1[@class='fw-bold m-0']/span)[2]")
+	private WebElement totalPriceWithTaxes;
 
-    public void enterPhoneNumber(String phoneNumber) {
-        inputFields.get(1).sendKeys(phoneNumber);
-    }
+	@FindBy(css = "button.btn-blue")
+	private WebElement selectExtrasButton;
 
-    public void enterFirstName(String firstName) {
-        inputFields.get(2).sendKeys(firstName);
-    }
+	public String getTitleOfBookingPage() {
+		return whosFlyingTitle.getText();
+	}
 
-    public void enterLastName(String lastName) {
-        inputFields.get(3).sendKeys(lastName);
-    }
+	public String getFromDepartureCountryToArrivalCountry() {
+		return flightPlaces.getText().substring(0, flightPlaces.getText().indexOf("-") - 1);
+	}
 
-    public void selectGender(String gender) {
-        Select select = new Select(selectsTabs.get(1));
-        select.selectByVisibleText(gender);
-    }
+	public String getFromArrivalCountryToDepartureCountry() {
+		return flightPlaces.getText().substring(flightPlaces.getText().indexOf("-") + 2);
+	}
 
-    public void selectBirthDate(String year, String month, String day) {
-        Select selectYear = new Select(selectsTabs.get(2));
-        selectYear.selectByVisibleText(year);
+	public String getTextOfTripType() {
+		return typeOfTrip.getText();
+	}
 
-        Select selectMonth = new Select(selectsTabs.get(3));
-        selectMonth.selectByVisibleText(month);
+	public void enterEmail(String email) {
+		inputFields.get(0).sendKeys(email);
+	}
 
-        Select selectDay = new Select(selectsTabs.get(4));
-        selectDay.selectByVisibleText(day);
-    }
+	public void enterPhoneNumber(String phoneNumber) {
+		inputFields.get(1).sendKeys(phoneNumber);
+	}
 
-    public Double getPriceOfTicket() {
-        return Double.parseDouble(pricesOfTicketOnTheBookingPage.get(0).getText().substring(2));
-    }
+	public void enterFirstName(String firstName) {
+		inputFields.get(2).sendKeys(firstName);
+	}
 
-    public Boolean isEqualToTotalPrice() {
-        double tax1 = ((getPriceOfTicket() * 5 / 100) * 100) / 100.0;
-        double tax2 = ((getPriceOfTicket() * 2 / 100) * 100) / 100.0;
+	public void enterLastName(String lastName) {
+		inputFields.get(3).sendKeys(lastName);
+	}
 
-        double expected = tax1 + tax2 + getPriceOfTicket();
-        double actual = Double.parseDouble(totalPriceWithTaxes.getText().substring(1));
+	public void selectGender(String gender) {
+		Select select = new Select(selectsTabs.get(1));
+		select.selectByVisibleText(gender);
+	}
 
-        return expected == actual;
+	public void selectBirthDate(String year, String month, String day) {
+		Select selectYear = new Select(selectsTabs.get(2));
+		selectYear.selectByVisibleText(year);
 
-    }
+		Select selectMonth = new Select(selectsTabs.get(3));
+		selectMonth.selectByVisibleText(month);
 
-    public void clickOnExtraButton() {
-        BrowserUtils.scrollDownWithPageDown();
-        selectExtrasButton.click();
-        BrowserUtils.scrollUpWithPageUp();
-    }
+		Select selectDay = new Select(selectsTabs.get(4));
+		selectDay.selectByVisibleText(day);
+	}
+
+	public Double getPriceOfTicket() {
+		return Double.parseDouble(pricesOfTicketOnTheBookingPage.get(0).getText().substring(2));
+	}
+
+	public Boolean isEqualToTotalPrice() {
+		double tax1 = ((getPriceOfTicket() * 5 / 100) * 100) / 100.0;
+		double tax2 = ((getPriceOfTicket() * 2 / 100) * 100) / 100.0;
+
+		double expected = tax1 + tax2 + getPriceOfTicket();
+		double actual = Double.parseDouble(totalPriceWithTaxes.getText().substring(1));
+
+		return expected == actual;
+
+	}
+
+	public void clickOnExtraButton() {
+		BrowserUtils.scrollDownWithPageDown();
+		selectExtrasButton.click();
+		BrowserUtils.scrollUpWithPageUp();
+	}
 
 }

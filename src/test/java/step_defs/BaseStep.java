@@ -5,6 +5,13 @@ import utils.DriverManager;
 import utils.Pages;
 
 public abstract class BaseStep {
-    protected final Pages PAGES = new Pages();
-    protected final WebDriver DRIVER = DriverManager.getWebDriver();
+
+	protected final WebDriver DRIVER;
+
+	protected static Pages PAGES;
+
+	public BaseStep(){
+		DRIVER = DriverManager.getWebDriver();
+		PAGES = new Pages();
+	}
 }

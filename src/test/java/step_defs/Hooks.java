@@ -8,7 +8,7 @@ import utils.DriverManager;
 
 public class Hooks {
 
-	Logger logger = LogManager.getLogger(Hooks.class);
+	private static final Logger logger = LogManager.getLogger(Hooks.class);
 
 	@Before
 	public void setUpTestEnvironment() {
