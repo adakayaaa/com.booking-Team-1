@@ -15,6 +15,15 @@ public class FlightsResultPage extends BasePage {
     @FindBy(xpath = "//div[@class='fare-item col-3 mt-5 active-fare ']//div[@class='d-block w-100 fs-5 text-muted']/span")
     private List<WebElement> pricesOfMain;
 
+    @FindBy(css = "button.btn-blue")
+    private  WebElement selectWhoFlyingButton;
+
+    @FindBy(xpath = "(//span[@class=\"mx-3\"])[1]")
+    private WebElement countOfAdultAndChildren;
+    @FindBy(css = "div.fw-semibold")
+    private List<WebElement> flightPlaces;
+
+
 
     public String getTitleOfResultPage(){
         return titlesOfResultPage.get(0).getText();
@@ -31,5 +40,28 @@ public class FlightsResultPage extends BasePage {
         System.out.println(list.get(1));
         return list.get(1);
     }
+
+    public void clickOnSelectWhoFlyingButton(){
+        BrowserUtils.scrollDownWithPageDown();
+        selectWhoFlyingButton.click();
+        BrowserUtils.scrollUpWithPageUp();
+    }
+
+    public int getCountOfAdult(){
+        return Integer.parseInt(countOfAdultAndChildren.getText().substring(0,countOfAdultAndChildren.getText().indexOf(" ")));
+    }
+    public int getCountOfChildren(){
+        return Integer.parseInt(countOfAdultAndChildren.getText().
+                substring(countOfAdultAndChildren.getText().indexOf("t")+2,countOfAdultAndChildren.getText().lastIndexOf(" ")));
+    }
+    public String getDepartureCountryToArrivalCountry(){
+        return flightPlaces.get(0).getText();
+    }
+
+    public String getArrivalCountryToDepartureCountry(){
+        BrowserUtils.scrollDownWithPageDown();
+        return flightPlaces.get(1).getText();
+    }
+
 
 }

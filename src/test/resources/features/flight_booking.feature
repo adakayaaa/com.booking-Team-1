@@ -61,72 +61,78 @@ Feature: Flight Tab
 #    Then The user should see only "Economy" on the tickets
 
 
-  Scenario:
-    Given The user is on the flights page
+#  Scenario Outline:
+#    Given The user is on the flights page
+#
+#    When The user clicks on the round way radio
+#    And The user selects departure as a "<departure country>"
+#    And The user selects return as a "<arrival country>"
+#    And The user selects departure date as "12" and return date as "15"
+#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
+#    And The user clicks on the search flights button
+#    And The user selects from checkbox "Business" in the cabin class
+#    And The user click on cheapest tab
+#    And The user click on cheapest ticket
+#    Then The user should see return ticket button"Select Return Ticket"
+#    When The user click on fastest tab
+#    Then The user should see that times of flights are arranged from fastest to slowest
+#
+#    When The user selects return ticket on the fastest flight
+#    Then The user should see title of the result page "Choose your fare"
+#    And The user should see that adult number as "<adult number>" and children number as  "<children number>" on the result page
+#    And The user should see that only  "<departure country>" and  "<arrival country>" are displayed
+#    Examples:
+#      | departure country | arrival country | adult number | children number |
+#      | USA               | Italy           | 3            | 2               |
 
-    When The user clicks on the round way radio
-    And The user selects departure as a "USA"
-    And The user selects return as a "Italy"
-    And The user selects departure date as "12" and return date as "15"
-    And The user determines adult number as "3" and children number as  "2"
-    And The user clicks on the search flights button
-    And The user selects from checkbox "Business" in the cabin class
-    And The user click on cheapest tab
-    And The user click on cheapest ticket
-    Then The user should see return ticket button"Select Return Ticket"
-    When The user click on fastest tab
-    Then The user should see that times of flights are arranged from fastest to slowest
 
-    When The user selects return ticket on the fastest flight
-    Then The user should see title of the result page "Choose your fare"
 #    And The user should see that the ticket prices as expected on the mains
 
 #  Scenario:
 #    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
+#
+#    When The user clicks on the round way radio
+#    And The user selects departure as a "USA"
+#    And The user selects return as a "Italy"
+#    And The user selects departure date as "12" and return date as "15"
+#    And The user determines adult number as "3" and children number as  "2"
 #    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And TThe user click on cheapest tab
-#    And The user click on cheapest ticket
-#
-#    And The user click on fastest tab
-#    And The user selects return ticket on the fastest flight
-#
-#    When The user click on "Select Who's flying" button
-#
-#    Then The user should see that " Who's flying" text
-#    And The user should see that only departure country and return country are displayed
-#    And The user should see that departure date return date
-#    And The user should see that only round way on the tickets
-#    And The user should see that number of passengers is displayed as expected
-#
-#  Scenario:
-#    Given The user is on the flights page
-#    And The user clicks on the round way radio
-#    And The user selects departure as a "<departure country>"
-#    And The user selects return as a "<return country>"
-#    And The user selects departure date as "<departure date>" and return date as "<return date>"
-#    And The user determines adult number as "<adult number>" and children number as  "<children number>"
-#    And The user clicks on the search flights button
-#    And The user selects from checkbox "<type of cabin class>" in the cabin class
-#    And TThe user click on cheapest tab
+#    And The user selects from checkbox "Business" in the cabin class
+#    And The user click on cheapest tab
 #    And The user click on cheapest ticket
 #    And The user click on fastest tab
 #    And The user selects return ticket on the fastest flight
-#    And The user click on "Select Who's flying" button
 #
-#    When The user enters  as "<contact mail>" email and  as "<phone number>" phone number
-#    And The user enters as "<first name>" and as "<last name>"
-#    And The user select gender
-#    And The user select birth of date
-#    And The user clicks on select extras button
+#    When The user click on Select Who's flying button
 #
-#    Then The user should see "Extras For Your Flight" text
-#
+#    Then The user should see that "Who's flying?" text
+#    And The user should see that only "USA to Italy" and "Italy to USA" are displayed
+#    And The user should see that only "Round Trip" on the tickets
+
+
+  Scenario:
+    Given The user is on the flights page
+    And The user clicks on the round way radio
+    And The user selects departure as a "<departure country>"
+    And The user selects return as a "<return country>"
+    And The user selects departure date as "<departure date>" and return date as "<return date>"
+    And The user determines adult number as "<adult number>" and children number as  "<children number>"
+    And The user clicks on the search flights button
+    And The user selects from checkbox "<type of cabin class>" in the cabin class
+    And The user click on cheapest tab
+    And The user click on cheapest ticket
+    And The user click on fastest tab
+    And The user selects return ticket on the fastest flight
+    And The user click on "Select Who's flying" button
+
+    When The user enters  as "<contact mail>" email and  as "<phone number>" phone number
+    And The user enters as "<first name>" and as "<last name>"
+    And The user select gender
+    And The user select birth of date
+    And The user clicks on select extras button
+
+    Then The user should see "Extras For Your Flight" text
+
 #  Scenario:
 #    Given The user is on the flights page
 #    And The user clicks on the round way radio
