@@ -49,13 +49,11 @@ public class FlightsDetailsPage extends BasePage {
 
 	public boolean isSelectedDepartureCountry(String departureCountry) {
 		List<String> list = departureCountries.stream().map(WebElement::getText).toList();
-		System.out.println(list);
 		return departureCountries.stream().allMatch(country -> country.getText().contains(departureCountry));
 	}
 
 	public boolean isSelectedArrivalCountry(String arrivalCountry) {
 		List<String> list = arrivalCountries.stream().map(WebElement::getText).toList();
-		System.out.println(list);
 		return arrivalCountries.stream().allMatch(country -> country.getText().contains(arrivalCountry));
 	}
 
