@@ -39,6 +39,9 @@ public class FlightsHomePage extends BasePage {
 	@FindBy(css = ".optionCounterNumber")
 	private List<WebElement> defaultCountsOfPeople;
 
+	@FindBy(css = "h1.headerTitle")
+	private WebElement titleOfFindYourStay;
+
 	public void clickOnFlightTab() {
 		flightTab.click();
 	}
@@ -99,6 +102,10 @@ public class FlightsHomePage extends BasePage {
 
 	public void clickOnTheSearchFlightButton() {
 		searchFlightsButton.click();
+	}
+
+	public String getTitleOfStayPage(){
+		return titleOfFindYourStay.getText();
 	}
 
 }

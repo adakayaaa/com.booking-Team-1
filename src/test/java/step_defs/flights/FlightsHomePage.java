@@ -94,4 +94,9 @@ public class FlightsHomePage extends BaseStep {
 			.withFailMessage("The day is not departure day!");
 	}
 
+
+	@Then("The user should see {string}text")
+	public void theUserShouldSeeText(String titleOfStayPage) {
+		then(PAGES.getFlightsHomePage().getTitleOfStayPage()).withFailMessage("The close button is not working!").isEqualTo(titleOfStayPage);
+	}
 }
