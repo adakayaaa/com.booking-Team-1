@@ -62,7 +62,7 @@ public class CarRentalsFilteringPage extends BasePage {
     public void selectTheCheckBoxWithParameter(String boxValue) {
         checkBoxes.stream().forEach(box -> {
             if (box.getAttribute("value").equals(boxValue)) {
-                box.click();
+                actions.moveToElement(box).click();
             }
         });
     }
@@ -103,7 +103,7 @@ public class CarRentalsFilteringPage extends BasePage {
         return true;
     }
     public void clickOnTheFilteringPageSearchButton(){
-        filteringPageSearchButton.click();
+       actions.moveToElement(filteringPageSearchButton).click();
     }
 
     public boolean areTransmissionsOfFilteredCarsMatch(String expectedTransmission) {
