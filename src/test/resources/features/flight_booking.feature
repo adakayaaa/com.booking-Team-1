@@ -36,7 +36,7 @@ Feature: Flight Tab
       | Italy             | USA            | 2              | 5           | 4            | 1               |
 
 
-  Scenario:Verification of Flights Booking Page
+  Scenario:Verification of Flights Filtering  Page
     Given The user is on the flights page
 
     When The user clicks on the round way radio
@@ -55,7 +55,7 @@ Feature: Flight Tab
     Then The user should see only "Business" on the tickets
 
 
-  Scenario Outline:Verification of Flights Filtering Page
+  Scenario Outline:Verification of Flights Details Page
     Given The user is on the flights page
 
     When The user clicks on the round way radio
@@ -84,7 +84,7 @@ Feature: Flight Tab
 
 #    And The user should see that the ticket prices as expected on the mains
 
-  Scenario Outline:Verification of Flights Details Page
+  Scenario Outline:Verification of Flights Extra1 Page
     Given The user is on the flights page
 
     When The user clicks on the round way radio
@@ -118,7 +118,7 @@ Feature: Flight Tab
       | yusuf@gmail.com | 5324529076   | Yusul Bilal | Cetin     | Male   | 2005 | 1     | 2   |
 
 
-  Scenario Outline:Verification of Flights Extra Page
+  Scenario Outline:Verification of Flights Extra2 Page
     Given The user is on the flights page
 
     When The user clicks on the round way radio
@@ -185,7 +185,32 @@ Feature: Flight Tab
       | Yusuf Bilal Cetin | 5476983254675234 | 08/29           | 234      |
       | Ada Kaya          | 1234566543217654 | 10/30           | 432      |
 
+  Scenario Outline:Verification of Flights Booking Page with Negative Scenarios
+    Given The user is on the flights page
 
+    When The user clicks on the round way radio
+    And The user selects departure as a "USA"
+    And The user selects return as a "Italy"
+    And The user selects departure date as "12" and return date as "15"
+    And The user determines adult number as "1" and children number as  "0"
+    And The user clicks on the search flights button
+    And The user selects from checkbox "Business" in the cabin class
+    And The user click on cheapest tab
+    And The user click on cheapest ticket
+    And The user click on fastest tab
+    And The user selects return ticket on the fastest flight
+    And The user click on Select Who's flying button
+
+    When The user enters  as invalid "<contact mail>" email and  as invalid "<phone number>" phone number
+    And The user enters as "<first name>" first name and as "<last name>" last name
+    And The user select gender as "<gender>" and birthdate as "<year>" year and "<month>" month and "<day>" day
+    And The user clicks on select extras button
+
+    Then The user should see  alert message
+    Examples:
+      | contact mail   | phone number | first name | last name | gender | year | month | day |
+      | e              | 5474567896   | Emir       | Uyanık    | Male   | 1987 | 7     | 4   |
+      | emir@gmail.com | 54           | Emir       | Uyanık    | Male   | 1987 | 7     | 4   |
 
 
 

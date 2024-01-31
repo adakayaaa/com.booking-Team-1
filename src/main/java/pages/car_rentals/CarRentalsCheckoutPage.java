@@ -56,6 +56,15 @@ public class CarRentalsCheckoutPage extends BasePage {
     @FindBy(css = ".btn-blue.fs-4.px-5.py-3")
     private WebElement bookNowButton;
 
+    @FindBy(xpath = "//h1[@class='fs-3 ']")
+    private WebElement bookingSuccessfullyMessage;
+
+    @FindBy(xpath = "(//span[@class='fw-bold'])[2]")
+    private WebElement pickupLocationInTheThankMessage;
+
+    @FindBy(css = ".btn-danger")
+    private WebElement closeButton;
+
 
     public String getBrandOfSelectedCarInCheckoutPage(){
        return brandOfSelectedCarInCheckoutPage.getText();
@@ -115,14 +124,19 @@ public class CarRentalsCheckoutPage extends BasePage {
         cardNumberField.sendKeys(cardNumber);
     }
 
+    public void enterExpirationDate(String date){
+        actions.moveToElement(expirationDateField).build().perform();
+        expirationDateField.sendKeys(date);
+    }
+
     public void enterCvvCode(String cvvCode){
         actions.moveToElement(cvvCodeField).build().perform();
         cvvCodeField.sendKeys(cvvCode);
     }
 
-    public void enterUserInformation(String firstName, String lastName, String phoneNumber, String countyName,
-                                     String address, String city, String postalCode, String cartHolder,
-                                     String cardNumber, String cvvCode){
+    public void enterCheckoutProcessInformation(String firstName, String lastName, String phoneNumber, String countyName,
+                                                String address, String city, String postalCode, String cartHolder,
+                                                String cardNumber, String expirationDate, String cvvCode){
         enterFirstName(firstName);
         enterLastName(lastName);
         enterPhoneNumber(phoneNumber);
@@ -132,6 +146,7 @@ public class CarRentalsCheckoutPage extends BasePage {
         enterPostalCode(postalCode);
         enterCardHolder(cartHolder);
         enterCardNumber(cardNumber);
+        enterExpirationDate(expirationDate);
         enterCvvCode(cvvCode);
     }
 
@@ -148,5 +163,19 @@ public class CarRentalsCheckoutPage extends BasePage {
 
     public void clickOnTheBookNowButton(){
         bookNowButton.click();
+    }
+
+    public String getBookingSuccessfullyMessage(){
+        return bookingSuccessfullyMessage.getText();
+    }
+
+    public String getPickupLocationInTheThankMessage(){
+        String[] partsOfLocation = pickupLocationInTheThankMessage.getText().split("-");
+        int sizeOfLocation = partsOfLocation[0].length();
+        return partsOfLocation[0].substring(0, sizeOfLocation);
+    }
+
+    public void clickOnTheCloseButton(){
+        closeButton.click();
     }
 }

@@ -97,4 +97,13 @@ public class CarRentalFilteringStep extends BaseStep {
         SELECTED_CAR = PAGES.getCarRentalsFilteringPage().getSelectedCar();
     }
 
+    //"Heathrow Airport","0-50","Manual" and "Small"
+    @And("The user enters {string},{string},{string} and {string}")
+    public void theUserEntersAnd(String pickUpLocation, String priceRange, String transmission, String category) {
+        PAGES.getCarRentalsFilteringPage().enterPickupLocation(pickUpLocation);
+        PAGES.getCarRentalsFilteringPage().selectTheCheckBoxWithParameter(priceRange);
+        PAGES.getCarRentalsFilteringPage().selectTheCheckBoxWithParameter(transmission);
+        PAGES.getCarRentalsFilteringPage().selectTheCheckBoxWithParameter(category);
+        LOGGER.info("The user enters pickUpLocation,priceRange,transmission and category");
+    }
 }
