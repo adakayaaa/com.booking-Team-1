@@ -18,6 +18,8 @@ Feature: Car Rental Tab
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
     Then The user validates that "Rent a Car for Your Trip" message is visible
+
+
   Scenario Outline: Validate the information in the booking home page correctly matches with the information in the Car rental page
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab

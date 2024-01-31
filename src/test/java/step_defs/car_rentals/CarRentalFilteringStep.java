@@ -5,13 +5,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pages.car_rentals.used_class.Car;
 import step_defs.BaseStep;
 import utils.BrowserUtils;
+import utils.Pages;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-public class CarRentalFilteringPage extends BaseStep {
-    private static final Logger LOGGER = LogManager.getLogger(CarRentalFilteringPage.class);
+public class CarRentalFilteringStep extends BaseStep {
+    public static Car SELECTED_CAR;
+    private static final Logger LOGGER = LogManager.getLogger(CarRentalFilteringStep.class);
 
     @And("The user selects the {string}")
     public void theUserClicksOnTheButton(String priceRange) {
@@ -82,7 +85,7 @@ public class CarRentalFilteringPage extends BaseStep {
 
     @Then("The user validates that cars are sorted from lowest to highest")
     public void theUserValidatesThatCarsAreSortedFromLowestToHighest() {
-        then(PAGES.getCarRentalsFilteringPage().areAllPricesArrangedFromLowestToHeighest()).isTrue();
+        then(PAGES.getCarRentalsFilteringPage().areAllPricesArrangedFromLowestToHighest()).isTrue();
         LOGGER.debug("The user validates that cars are sorted from lowest to heighest");
     }
 
@@ -91,6 +94,7 @@ public class CarRentalFilteringPage extends BaseStep {
         BrowserUtils.wait(1.0);
         PAGES.getCarRentalsFilteringPage().clickOnTheViewDealButton(index);
         LOGGER.info("The user clicks View Dial button of the first element");
+        SELECTED_CAR = PAGES.getCarRentalsFilteringPage().getSelectedCar();
     }
 
 }
