@@ -51,9 +51,12 @@ public class CarRentalsHomePage extends BasePage {
     }
 
     public void selectTheDropOffHour(String hour){
+
         Select select = new Select(pickupAndDropOffHourElements.get(1));
         select.selectByVisibleText(hour);
     }
+
+
 
     public void clickOnTheSearchButton() {
         searchButtonLink.click();
