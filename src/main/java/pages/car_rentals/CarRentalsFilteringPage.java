@@ -203,7 +203,6 @@ public class CarRentalsFilteringPage extends BasePage {
         pickupLocationOfSelectedCar = pickedUpLocationOfFilteredCars.get(0).getText();
         transmissionOfSelectedCar = categoryAndTransmissionsOfFilteredCars.get(1).getText();
         categoryOfSelectedCar = categoryAndTransmissionsOfFilteredCars.get(3).getText();
-
         try {
             viewDealButtons.get(index - 1).click();
         } catch (Exception e) {

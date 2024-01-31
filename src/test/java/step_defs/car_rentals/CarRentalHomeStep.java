@@ -46,4 +46,20 @@ public class CarRentalHomeStep extends BaseStep {
     public void the_user_clicks_on_the_search_button(){
         PAGES.getCarRentalsHomePage().clickOnTheSearchButton();
     }
+
+    //"<pick up location>","<pickup_date>","<pickup_hour>","<drop-off_date>" and "<drop_hour>"
+    @And("The user enter {string},{string},{string},{string} and {string}")
+    public void theUserEnterCredentialsInCarRentalsHomePage
+    (String pickupLocation , String pickup_date, String pickup_hour, String dropOffDate, String drop_hour ){
+        PAGES.getCarRentalsHomePage().enterThePickupLocation(pickupLocation);
+        PAGES.getCarRentalsHomePage().setDropOffDate(dropOffDate);
+        PAGES.getCarRentalsHomePage().selectThePickupHour(pickup_hour);
+        PAGES.getCarRentalsHomePage().selectTheDropOffHour(drop_hour);
+        PAGES.getCarRentalsHomePage().setPickupDate(pickup_date);
+    }
+
+    @Then("The user face with {string}")
+    public void theUserFaceWith(String errorMessage) {
+
+    }
 }
