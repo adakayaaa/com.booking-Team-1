@@ -17,6 +17,46 @@ public class CarRentalsCheckoutPage extends BasePage {
     @FindBy(css = ".my-4 > .p-2> .fs-4")
     private List<WebElement> categoryAndTransmissionsOfSelectedCarInCheckoutPage;
 
+    @FindBy(id = "firstName")
+    private WebElement firstNameField;
+
+    @FindBy(id = "lastName")
+    private WebElement lastNameField;
+
+    @FindBy(xpath = "//input[@name = 'phone']")
+    private WebElement phoneNumberField;
+
+    @FindBy(id = "country")
+    private WebElement countryField;
+
+    @FindBy(id = "address")
+    private WebElement addressField;
+
+    @FindBy(id = "city")
+    private WebElement cityField;
+
+    @FindBy(id = "postalCode")
+    private WebElement postalCodeField;
+
+    @FindBy(css = "[placeholder = \"Cardholder's Name\"]")
+    private WebElement cardholderNameField;
+
+    @FindBy(css = "[name = 'cardNumber']")
+    private WebElement cardNumberField;
+
+    @FindBy(css = "[name = 'expirationDate']")
+    private WebElement expirationDateField;
+
+    @FindBy(css = "[name = 'cvv']")
+    private WebElement cvvCodeField;
+
+    @FindBy(css = ".text-danger")
+    private List<WebElement> errorMessages;
+
+    @FindBy(css = ".btn-blue.fs-4.px-5.py-3")
+    private WebElement bookNowButton;
+
+
     public String getBrandOfSelectedCarInCheckoutPage(){
        return brandOfSelectedCarInCheckoutPage.getText();
     }
@@ -30,6 +70,83 @@ public class CarRentalsCheckoutPage extends BasePage {
         return categoryAndTransmissionsOfSelectedCarInCheckoutPage.get(3).getText();
     }
 
+    public void enterFirstName(String firstName){
+        actions.moveToElement(firstNameField).build().perform();
+        firstNameField.sendKeys(firstName);
+    }
 
+    public void enterLastName(String lastName){
+        actions.moveToElement(lastNameField).build().perform();
+        lastNameField.sendKeys(lastName);
+    }
 
+    public void enterPhoneNumber(String phoneNumber){
+        actions.moveToElement(phoneNumberField).build().perform();
+        phoneNumberField.sendKeys(phoneNumber);
+    }
+
+    public void enterCountryName(String countryName){
+        actions.moveToElement(countryField).build().perform();
+        countryField.sendKeys(countryName);
+    }
+
+    public void enterAddress(String address){
+        actions.moveToElement(addressField).build().perform();
+        addressField.sendKeys(address);
+    }
+
+    public void enterCity(String city){
+        actions.moveToElement(cityField).build().perform();
+        cityField.sendKeys(city);
+    }
+
+    public void enterPostalCode(String postalCode){
+        actions.moveToElement(postalCodeField).build().perform();
+        postalCodeField.sendKeys(postalCode);
+    }
+
+    public void enterCardHolder(String cardHolder){
+        actions.moveToElement(cardholderNameField).build().perform();
+        cardholderNameField.sendKeys(cardHolder);
+    }
+
+    public void enterCardNumber(String cardNumber){
+        actions.moveToElement(cardNumberField).build().perform();
+        cardNumberField.sendKeys(cardNumber);
+    }
+
+    public void enterCvvCode(String cvvCode){
+        actions.moveToElement(cvvCodeField).build().perform();
+        cvvCodeField.sendKeys(cvvCode);
+    }
+
+    public void enterUserInformation(String firstName, String lastName, String phoneNumber, String countyName,
+                                     String address, String city, String postalCode, String cartHolder,
+                                     String cardNumber, String cvvCode){
+        enterFirstName(firstName);
+        enterLastName(lastName);
+        enterPhoneNumber(phoneNumber);
+        enterCountryName(countyName);
+        enterAddress(address);
+        enterCity(city);
+        enterPostalCode(postalCode);
+        enterCardHolder(cartHolder);
+        enterCardNumber(cardNumber);
+        enterCvvCode(cvvCode);
+    }
+
+    public String getErrorMessageOfSpecifiedElement(String elementName){
+        List<String> strOfErrorMessages = errorMessages.stream().map(WebElement::getText).toList();
+        for (String errorMessage: strOfErrorMessages){
+            if (errorMessage.toLowerCase().contains(elementName)){
+                return errorMessage;
+            }
+        }
+
+        return "Error message not found!";
+    }
+
+    public void clickOnTheBookNowButton(){
+        bookNowButton.click();
+    }
 }
