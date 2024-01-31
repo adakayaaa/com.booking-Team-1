@@ -13,7 +13,7 @@ public class CarRentalsHomePage extends BasePage {
     @FindBy(linkText = "inarbooking")
     private WebElement inarBookingHeader;
 
-    @FindBy(xpath = "//span[text() = 'Car rentals']")
+    @FindBy(css = ".headerListItem:nth-child(3)")
     private WebElement carRentalsLink;
 
     @FindBy(css = ".headerTitle")

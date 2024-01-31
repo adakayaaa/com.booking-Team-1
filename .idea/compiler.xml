@@ -12,6 +12,8 @@
     <bytecodeTargetLevel>
       <module name="com.booking" target="17" />
       <module name="com.booking-Team-1" target="17" />
+      <module name="inar.academy.booking (1)" target="17" />
+      <module name="inar.academy.booking (2)" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

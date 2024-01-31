@@ -3,6 +3,7 @@ package pages.car_rentals;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import utils.BrowserUtils;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class CarRentalsFilteringPage extends BasePage {
     @FindBy(css = ".lsCheckboxInput")
     private List<WebElement> checkBoxes;
 
-    @FindBy(css = ".search-btn-car-rental > button")
+    @FindBy(css = ".search-btn-car-rental")
     private WebElement filteringPageSearchButton;
 
     @FindBy(css = ".fs-1")
@@ -33,7 +34,7 @@ public class CarRentalsFilteringPage extends BasePage {
     private List<WebElement> pickedUpLocationOfFilteredCars;
 
     @FindBy(css = ".lrb-btn")
-    private List<WebElement> heighestAndLowestButtons;
+    private List<WebElement> highestAndLowestButtons;
 
     @FindBy(css = ".mt-2.btn-blue")
     private List<WebElement> viewDealButtons;
@@ -42,8 +43,7 @@ public class CarRentalsFilteringPage extends BasePage {
     private List<WebElement> brandsOfCars;
 
 
-
-    public void enterPickupLocation(String pick_up_location){
+    public void enterPickupLocation(String pick_up_location) {
         pickupLocationTextField.sendKeys(pick_up_location);
     }
 
@@ -60,8 +60,9 @@ public class CarRentalsFilteringPage extends BasePage {
     }
 
     public void selectTheCheckBoxWithParameter(String boxValue) {
-        checkBoxes.stream().forEach(box -> {
+        checkBoxes.forEach(box -> {
             if (box.getAttribute("value").equals(boxValue)) {
+                actions.moveToElement(box).build().perform();
                 box.click();
             }
         });
@@ -71,15 +72,15 @@ public class CarRentalsFilteringPage extends BasePage {
     public boolean isTheCheckBoxSelected(String boxValue) {
         boolean isSelected = false;
         for (int i = 0; i < checkBoxes.size(); i++) {
-            if (checkBoxes.get(i).getAttribute("value").equals(boxValue)){
-                isSelected =  checkBoxes.get(i).isSelected();
+            if (checkBoxes.get(i).getAttribute("value").equals(boxValue)) {
+                isSelected = checkBoxes.get(i).isSelected();
             }
         }
 
         return isSelected;
     }
 
-    public boolean areThePricesOfTheFilteredCarsInTheSelectedPriceRage(String priceRange){
+    public boolean areThePricesOfTheFilteredCarsInTheSelectedPriceRage(String priceRange) {
         String[] bordersOfPrices = priceRange.split("-");
         double minPrice = Double.parseDouble(bordersOfPrices[0]);
         double maxPrice = Double.parseDouble(bordersOfPrices[1]);
@@ -93,17 +94,22 @@ public class CarRentalsFilteringPage extends BasePage {
     }
 
 
-    public boolean checkPrices(List<Double> doubleOfPricesOfFilteredCars, double minPrice, double maxPrice){
-        for (double price : doubleOfPricesOfFilteredCars){
-            if(price > maxPrice || price < minPrice){
+    public boolean checkPrices(List<Double> doubleOfPricesOfFilteredCars, double minPrice, double maxPrice) {
+        for (double price : doubleOfPricesOfFilteredCars) {
+            if (price > maxPrice || price < minPrice) {
                 return false;
             }
         }
 
         return true;
     }
-    public void clickOnTheFilteringPageSearchButton(){
-        filteringPageSearchButton.click();
+
+    public void clickOnTheFilteringPageSearchButton() {
+        try {
+            filteringPageSearchButton.click();
+        } catch (Exception e) {
+            filteringPageSearchButton.click();
+        }
     }
 
     public boolean areTransmissionsOfFilteredCarsMatch(String expectedTransmission) {
@@ -129,15 +135,23 @@ public class CarRentalsFilteringPage extends BasePage {
         return filteredLocation.stream().allMatch(expectedLocations::equals);
     }
 
-    public void clickOnTheHeighestButton() {
-        heighestAndLowestButtons.get(1).click();
+    public void clickOnTheHighestSortButton() {
+        try {
+            highestAndLowestButtons.get(1).click();
+        } catch (Exception e) {
+            highestAndLowestButtons.get(1).click();
+        }
     }
 
-    public void clickOnTheLowestButton() {
-        heighestAndLowestButtons.get(0).click();
+    public void clickOnTheLowestSortButton() {
+        try {
+            highestAndLowestButtons.get(0).click();
+        } catch (Exception e) {
+            highestAndLowestButtons.get(0).click();
+        }
     }
 
-    public boolean areAllPricesArrangedFromHeighestToLowest() {
+    public boolean areAllPricesArrangedFromHighestToLowest() {
         List<Double> filteredPrices = getPricesOfFilteredCars(pricesOfTheFilteredCars);
         for (int i = 0; i < filteredPrices.size() - 1; i++) {
             if (filteredPrices.get(i) < filteredPrices.get(i + 1)) {
@@ -158,17 +172,22 @@ public class CarRentalsFilteringPage extends BasePage {
         return true;
     }
 
-    public void clickOnTheViewDealButton(int index){
-        brandOfSelectedCar = brandsOfCars.get(index).getText();
-        priceOfSelectedCar = getPricesOfFilteredCars(pricesOfTheFilteredCars).get(index);
-        viewDealButtons.get(index).click();
+    public void clickOnTheViewDealButton(int index) {
+        brandOfSelectedCar = brandsOfCars.get(index - 1).getText();
+        priceOfSelectedCar = getPricesOfFilteredCars(pricesOfTheFilteredCars).get(index - 1);
+        try{
+            viewDealButtons.get(index -1).click();
+        }catch (Exception e){
+            viewDealButtons.get(index -1).click();
+        }
+        BrowserUtils.wait(1.0);
     }
 
-    public String getBrandOfSelectedCarInFilteringPage(){
+    public String getBrandOfSelectedCarInFilteringPage() {
         return brandOfSelectedCar;
     }
 
-    public double getPriceOfSelectedCarInFilteringPage(){
+    public double getPriceOfSelectedCarInFilteringPage() {
         return priceOfSelectedCar;
     }
 

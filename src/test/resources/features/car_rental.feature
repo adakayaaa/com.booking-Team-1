@@ -51,10 +51,6 @@ Feature: Car Rental Tab
     And The user enters "<pick_up_location>","<price_range>","<car_spec>","<transmission>" and "<car_category>"
     And The user clicks on search button in filtering page
     Then The user validates that "<pick_up_location>","<price_range>","<transmission>" and "<car_category>" matches with displayed cars' information
-    When The user clicks on price highest sort button
-    Then The user validates that cars are sorted from highest to lowest
-    When The user clicks on price lowest sort button
-    Then The user validates that cars are sorted from lowest to highest
     Examples:
       | pick_up_location | price_range | car_spec               | transmission | car_category |
       | Heathrow Airport | 0-50        | Bluetooth Connectivity | Manual       | Small        |
@@ -62,6 +58,15 @@ Feature: Car Rental Tab
       | Grand Bazaar     | 100-150     | Sunroof                | Automatic    | Large        |
       | Taj Mahal        | 50-100      | Keyless Entry          | Automatic    | Minivan      |
       | Machu Picchu     | 50-100      | Backup Camera          | Automatic    | SUV          |
+    Scenario: Validate that sort buttons are functioning properly
+      When The user clicks on the Booking link
+      And The user clicks on the Car rentals tab
+      And The user clicks on the search button
+      And The user clicks on price highest sort button
+      Then The user validates that cars are sorted from highest to lowest
+      When The user clicks on price lowest sort button
+      Then The user validates that cars are sorted from lowest to highest
+
   Scenario Outline: Validate that the chosen car in the filtering page can be booked successfully with valid credentials
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
@@ -89,8 +94,9 @@ Feature: Car Rental Tab
     When The user clicks on the close button
     Then The user navigates to Booking home page
     Examples:
-      | pick_up_location | price_range | car_spec               | transmission | car_category | firstName | lastName |
-      | Heathrow Airport | 0-50        | Bluetooth Connectivity | Manual       | Small        | Gurol     | Gokyar   |
+      | pick_up_location | price_range | car_spec      | transmission | car_category | firstName | lastName |
+      | Central Park     | 50-100      | Leather Seats | Manual       | Medium       | Gurol     | Gokyar   |
+
   Scenario Outline: Validate true error messages are displayed in checkout page
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
