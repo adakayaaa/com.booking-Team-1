@@ -9,7 +9,7 @@ import pages.HomePage;
 import step_defs.BaseStep;
 import utils.BrowserUtils;
 
-public class CarRentalHomePage extends BaseStep {
+public class CarRentalHomeStep extends BaseStep {
     HomePage homePage;
     @Given("The user navigates to the Inar Academy Home page")
     public void the_user_navigates_to_the_Inar_Academy_Home_page(){

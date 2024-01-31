@@ -3,16 +3,26 @@ package pages.car_rentals;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import pages.car_rentals.used_class.Car;
 import utils.BrowserUtils;
 
 import java.util.List;
 
 public class CarRentalsFilteringPage extends BasePage {
-
+    private Car selectedCar = new Car();
     private String brandOfSelectedCar;
-
     private double priceOfSelectedCar;
+    private String pickupLocationOfSelectedCar;
+    private String transmissionOfSelectedCar;
+    private String categoryOfSelectedCar;
+    private String pickupDateOfSelectedCar;
+    private String dropOffDateOfSelectedCar;
 
+    @FindBy(xpath = "(//input[@class='form-control'])[1]")
+    private WebElement pickupDate;
+
+    @FindBy(xpath = "(//input[@class='form-control'])[2]")
+    private WebElement dropOffDate;
     @FindBy(css = "[placeholder='Enter pickup location']")
     private WebElement pickupLocationTextField;
     @FindBy(css = ".position-relative")
@@ -41,6 +51,20 @@ public class CarRentalsFilteringPage extends BasePage {
 
     @FindBy(css = ".carRentalItemDetails > h3")
     private List<WebElement> brandsOfCars;
+    public String getPickupDate(){
+        return pickupDate.getAttribute("value");
+    }
+    public String getDropOffDate(){
+        return dropOffDate.getAttribute("value");
+    }
+    public int getDayOfPickupDate(){
+        String[] partsOfDate = pickupDate.getAttribute("value").split("-");
+        return Integer.parseInt(partsOfDate[2]);
+    }
+    public int getDayOfDropOffDate(){
+        String[] partsOfDate = dropOffDate.getAttribute("value").split("-");
+        return Integer.parseInt(partsOfDate[2]);
+    }
 
 
     public void enterPickupLocation(String pick_up_location) {
@@ -162,7 +186,7 @@ public class CarRentalsFilteringPage extends BasePage {
     }
 
 
-    public boolean areAllPricesArrangedFromLowestToHeighest() {
+    public boolean areAllPricesArrangedFromLowestToHighest() {
         List<Double> filteredPrices = getPricesOfFilteredCars(pricesOfTheFilteredCars);
         for (int i = 0; i < filteredPrices.size() - 1; i++) {
             if (filteredPrices.get(i) > filteredPrices.get(i + 1)) {
@@ -173,22 +197,30 @@ public class CarRentalsFilteringPage extends BasePage {
     }
 
     public void clickOnTheViewDealButton(int index) {
+
         brandOfSelectedCar = brandsOfCars.get(index - 1).getText();
         priceOfSelectedCar = getPricesOfFilteredCars(pricesOfTheFilteredCars).get(index - 1);
-        try{
-            viewDealButtons.get(index -1).click();
-        }catch (Exception e){
-            viewDealButtons.get(index -1).click();
+        pickupLocationOfSelectedCar = pickedUpLocationOfFilteredCars.get(0).getText();
+        transmissionOfSelectedCar = categoryAndTransmissionsOfFilteredCars.get(1).getText();
+        categoryOfSelectedCar = categoryAndTransmissionsOfFilteredCars.get(3).getText();
+
+        try {
+            viewDealButtons.get(index - 1).click();
+        } catch (Exception e) {
+            viewDealButtons.get(index - 1).click();
         }
         BrowserUtils.wait(1.0);
     }
 
-    public String getBrandOfSelectedCarInFilteringPage() {
-        return brandOfSelectedCar;
+    public Car getSelectedCar() {
+        selectedCar.setCategoryOfSelectedCar(categoryOfSelectedCar);
+        selectedCar.setTransmissionOfSelectedCar(transmissionOfSelectedCar);
+        selectedCar.setPriceOfCar(priceOfSelectedCar);
+        selectedCar.setPickupLocationOfSelectedCar(pickupLocationOfSelectedCar);
+        selectedCar.setCarName(brandOfSelectedCar);
+
+        return selectedCar;
     }
 
-    public double getPriceOfSelectedCarInFilteringPage() {
-        return priceOfSelectedCar;
-    }
 
 }
