@@ -23,6 +23,9 @@ public class FlightsCheckoutPage extends BasePage {
 	@FindBy(css = "button.btn-danger")
 	private WebElement closeButton;
 
+	@FindBy(css = ".fs-5")
+	private WebElement errorMessage;
+
 	public String getTitleOfCardHolder() {
 		return titleOfCardholder.getText();
 	}
@@ -51,6 +54,10 @@ public class FlightsCheckoutPage extends BasePage {
 
 	public void clickOnCloseButton(){
 		closeButton.click();
+	}
+
+	public boolean isErrorMessageDisplayed(){
+		return !errorMessage.getText().isEmpty();
 	}
 
 
