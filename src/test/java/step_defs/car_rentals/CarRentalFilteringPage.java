@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import step_defs.BaseStep;
+import utils.BrowserUtils;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
@@ -21,6 +22,9 @@ public class CarRentalFilteringPage extends BaseStep {
 
     @Then("The user validates that {string} is selected")
     public void theUserValidatesThatIsSelected(String boxValue) {
+//        JavascriptExecutor js = (JavascriptExecutor) DRIVER;
+//        js.executeScript("window.scrollBy(0, 300)");
+//        BrowserUtils.wait(1.0);
         PAGES.getCarRentalsFilteringPage().isTheCheckBoxSelected(boxValue);
         LOGGER.debug("The user validates that " + boxValue + " is selected");
     }
@@ -56,21 +60,22 @@ public class CarRentalFilteringPage extends BaseStep {
 
     @When("The user clicks on price highest sort button")
     public void theUserClicksOnPriceHighestSortButton() {
-        PAGES.getCarRentalsFilteringPage().clickOnTheHeighestButton();
+        PAGES.getCarRentalsFilteringPage().clickOnTheHighestSortButton();
         LOGGER.info("The user clicks on price highest sort button");
+
     }
 
 
     @Then("The user validates that cars are sorted from highest to lowest")
     public void theUserValidatesThatCarsAreSortedFromHighestToLowest() {
-        then(PAGES.getCarRentalsFilteringPage().areAllPricesArrangedFromHeighestToLowest()).isTrue();
+        then(PAGES.getCarRentalsFilteringPage().areAllPricesArrangedFromHighestToLowest()).isTrue();
         LOGGER.debug("The user validates that cars are sorted from highest to lowest");
     }
 
 
     @When("The user clicks on price lowest sort button")
     public void theUserClicksOnPriceLowestSortButton() {
-        PAGES.getCarRentalsFilteringPage().clickOnTheLowestButton();
+        PAGES.getCarRentalsFilteringPage().clickOnTheLowestSortButton();
         LOGGER.info("The user clicks on price lowest sort button");
     }
 
@@ -83,6 +88,7 @@ public class CarRentalFilteringPage extends BaseStep {
 
     @And("The user clicks View Dial button of the #{int} element")
     public void theUserClicksViewDialButtonOfTheFirstElement(int index) {
+        BrowserUtils.wait(1.0);
         PAGES.getCarRentalsFilteringPage().clickOnTheViewDealButton(index);
         LOGGER.info("The user clicks View Dial button of the first element");
     }

@@ -17,8 +17,12 @@ public class CarRentalsDetailsPage extends BaseStep {
     @Then("The user validates that the name of selected car is true")
     public void theUserValidatesThatTheNameOfSelectedCarIsTrue() {
         String expectedResult = PAGES.getCarRentalsFilteringPage().getBrandOfSelectedCarInFilteringPage();
+        System.out.println(expectedResult);
         String actualResult = PAGES.getCarRentalsDetailsPage().getBrandOfSelectedCarInDetailsPage();
+        System.out.println(actualResult);
+
         then(expectedResult).isEqualTo(actualResult);
+
         LOGGER.debug("The user validates that the name of selected car is true");
     }
 

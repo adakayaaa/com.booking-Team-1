@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 import pages.HomePage;
 import step_defs.BaseStep;
+import utils.BrowserUtils;
 
 public class CarRentalHomePage extends BaseStep {
     HomePage homePage;
@@ -24,20 +25,21 @@ public class CarRentalHomePage extends BaseStep {
     public void the_user_sees_Booking_Home_page(){
         String actualHeader = PAGES.getCarRentalsHomePage().getInarBookingHeaderText();
         String expectedHeader = "inarbooking";
-        Assertions.assertThat(expectedHeader).isEqualTo(actualHeader).withFailMessage("The user is not on the Booking" +
-                " home page");
+        Assertions.assertThat(expectedHeader).withFailMessage("The user is not on the Booking" +
+                " home page").isEqualTo(actualHeader);
     }
 
     @And("The user clicks on the Car rentals tab")
     public void the_user_clicks_on_the_Car_rentals_tab(){
+        BrowserUtils.wait(1.0);
         PAGES.getCarRentalsHomePage().clickOnTheCarRentalsLink();
     }
 
     @Then("The user validates that {string} message is visible")
     public void the_user_validates_that_true_message_is_visible(String expectedMessage){
         String actualMessage = PAGES.getCarRentalsHomePage().getHeaderTitleMessage();
-        Assertions.assertThat(actualMessage).isEqualTo(expectedMessage).withFailMessage("The user is not on the " +
-                "Booking home page");
+        Assertions.assertThat(actualMessage).withFailMessage("The user is not on the " +
+                "Booking home page").isEqualTo(expectedMessage);
     }
 
     @And("The user clicks on the search button")
