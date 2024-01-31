@@ -66,6 +66,7 @@ public class FlightsDetailsPage extends BasePage {
 	}
 
 	public void clickOnCheapestTab() {
+
 		cheapestAndFastestAndAllButtons.get(0).click();
 
 	}
@@ -146,7 +147,6 @@ public class FlightsDetailsPage extends BasePage {
 
 	public void clickOnSelectTicketButton() {
 		selectTicketButton.get(0).click();
-
 	}
 
 	public String getTextOfSelectReturnTicket() {
@@ -157,7 +157,6 @@ public class FlightsDetailsPage extends BasePage {
 		List<Integer> prices = flightPrices.stream()
 			.map(price -> Integer.parseInt(price.getText().substring(1)))
 			.toList();
-		System.out.println(prices.get(0));
 		return prices.get(0);
 	}
 

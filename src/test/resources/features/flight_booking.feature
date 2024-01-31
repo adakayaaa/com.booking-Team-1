@@ -4,6 +4,7 @@
 
 #Test Case: flight_booking
 #Test Title: Validate the Flight Tab Includes Search Bar for Flight
+  
 @example
 Feature: Flight Tab
 
@@ -81,8 +82,6 @@ Feature: Flight Tab
       | USA               | Italy           | 1            | 1               |
       | Italy             | USA             | 4            | 5               |
 
-
-#    And The user should see that the ticket prices as expected on the mains
 
   Scenario Outline:Verification of Flights Extra1 Page
     Given The user is on the flights page
@@ -185,6 +184,67 @@ Feature: Flight Tab
       | Yusuf Bilal Cetin | 5476983254675234 | 08/29           | 234      |
       | Ada Kaya          | 1234566543217654 | 10/30           | 432      |
 
+  Scenario Outline:Verification of Flights Check Out Page With Invalid Credentials
+    Given The user is on the flights page
+    When The user clicks on the round way radio
+    And The user selects departure as a "USA"
+    And The user selects return as a "Italy"
+    And The user selects departure date as "12" and return date as "15"
+    And The user determines adult number as "1" and children number as  "0"
+    And The user clicks on the search flights button
+    And The user selects from checkbox "Business" in the cabin class
+    And The user click on cheapest tab
+    And The user click on cheapest ticket
+    And The user click on fastest tab
+    And The user selects return ticket on the fastest flight
+    And The user click on Select Who's flying button
+    And The user enters  as "emir@gmail.com" email and  as "5474567896" phone number
+    And The user enters as "Emir" first name and as "Uyanık" last name
+    And The user select gender as "Male" and birthdate as "1996" year and "7" month and "4" day
+    And The user clicks on select extras button
+    And The user click on go to checkout button
+    And The user enter as "<Cardholder's Name>" cardholder's name
+    And The user enter as "<Card Number>" card number
+    And The user enter as "<Expiration Date>" expiration date
+    And The user enter as "<CVV Code>" cvv code
+    And The user clicks on Complete Booking button
+
+    Then The user should see error message
+
+    Examples:
+      | Cardholder's Name | Card Number      | Expiration Date | CVV Code |
+      | Emir Uyanık       | 12345            | 12/25           | 444      |
+      | Yusuf Bilal Cetin | 5476983254675234 | 08/25           | 23       |
+
+
+  Scenario:Verification of Flights Check Out Page With Invalid Expiration Date
+    Given The user is on the flights page
+    When The user clicks on the round way radio
+    And The user selects departure as a "USA"
+    And The user selects return as a "Italy"
+    And The user selects departure date as "12" and return date as "15"
+    And The user determines adult number as "1" and children number as  "0"
+    And The user clicks on the search flights button
+    And The user selects from checkbox "Business" in the cabin class
+    And The user click on cheapest tab
+    And The user click on cheapest ticket
+    And The user click on fastest tab
+    And The user selects return ticket on the fastest flight
+    And The user click on Select Who's flying button
+    And The user enters  as "emir@gmail.com" email and  as "5474567896" phone number
+    And The user enters as "Emir" first name and as "Uyanık" last name
+    And The user select gender as "Male" and birthdate as "1996" year and "7" month and "4" day
+    And The user clicks on select extras button
+    And The user click on go to checkout button
+    And The user enter as "Emir Uyanık" cardholder's name
+    And The user enter as "5476983254675234" card number
+    And The user enter as "08/21" invalid expiration date
+    And The user enter as "444" cvv code
+    And The user clicks on Complete Booking button
+
+    Then The user should see error message
+
+
   Scenario Outline:Verification of Flights Booking Page with Negative Scenarios
     Given The user is on the flights page
 
@@ -211,6 +271,22 @@ Feature: Flight Tab
       | contact mail   | phone number | first name | last name | gender | year | month | day |
       | e              | 5474567896   | Emir       | Uyanık    | Male   | 1987 | 7     | 4   |
       | emir@gmail.com | 54           | Emir       | Uyanık    | Male   | 1987 | 7     | 4   |
+
+  Scenario:Verification of Flights Result Page For Departure Ticket Price
+    Given The user is on the flights page
+    When The user clicks on the round way radio
+    And The user selects departure as a "USA"
+    And The user selects return as a "Italy"
+    And The user selects departure date as "12" and return date as "15"
+    And The user determines adult number as "1" and children number as  "0"
+    And The user clicks on the search flights button
+    And The user selects from checkbox "Business" in the cabin class
+    And The user click on cheapest tab
+    And The user click on cheapest ticket
+    And The user click on fastest tab
+    And The user selects return ticket on the fastest flight
+
+    Then The user should see that the ticket prices as expected on the mains
 
 
 
