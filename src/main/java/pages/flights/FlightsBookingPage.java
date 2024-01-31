@@ -100,8 +100,8 @@ public class FlightsBookingPage extends BasePage {
 
 	public void clickOnExtraButton() {
 		BrowserUtils.scrollDownWithPageDown();
+		BrowserUtils.wait(2);
 		selectExtrasButton.click();
-		BrowserUtils.scrollUpWithPageUp();
 	}
 
 }
