@@ -1,25 +1,13 @@
 package pages.hotels.used_class;
 
+public class Hotel {
 
-import pages.BasePage;
+    public  int priceOfHotel;
 
-public class Hotel extends BasePage {
-    private  String hotelName;
-    private int priceOfHotel;
+    public String nameOfHotel;
 
-    public Hotel(){
-
-    }
-    public Hotel(String hotelName,int priceOfHotel){
-        this.hotelName=hotelName;
-        this.priceOfHotel=priceOfHotel;
-    }
-
-    public String getHotelName() {
-        return hotelName;
-    }
-
-    public int getPriceOfHotel() {
-        return priceOfHotel;
+    public Hotel(int priceOfHotel, String nameOfHotel){
+        this.priceOfHotel = priceOfHotel;
+        this.nameOfHotel = nameOfHotel;
     }
 }

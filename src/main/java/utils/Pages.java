@@ -7,6 +7,7 @@ import pages.car_rentals.CarRentalsFilteringPage;
 import pages.car_rentals.CarRentalsHomePage;
 import pages.flights.*;
 import pages.hotels.*;
+import pages.hotels.header_section.TabBar;
 
 public class Pages {
 
@@ -44,6 +45,10 @@ public class Pages {
 
 	private HotelsDetailsPage hotelsDetailsPage;
 
+	private HotelsConfirmationPage hotelsConfirmationPage;
+
+	private TabBar tabBar;
+
 
 	public Pages() {
 		this.homePage = new HomePage();
@@ -63,6 +68,8 @@ public class Pages {
 		this.hotelsBookingPage = new HotelsBookingPage();
 		this.hotelsFilteringPage = new HotelsFilteringPage();
 		this.hotelsDetailsPage = new HotelsDetailsPage();
+		this.hotelsConfirmationPage = new HotelsConfirmationPage();
+		this.tabBar = new TabBar();
 	}
 
 	public FlightsBookingPage getFlightsBookingPage() {
@@ -133,4 +140,11 @@ public class Pages {
 		return flightsHomePage;
 	}
 
+	public HotelsConfirmationPage getHotelsConfirmationPage() {
+		return hotelsConfirmationPage;
+	}
+
+	public TabBar getTabBar() {
+		return tabBar;
+	}
 }
