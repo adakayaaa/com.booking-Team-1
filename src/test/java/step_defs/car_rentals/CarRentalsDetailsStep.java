@@ -29,7 +29,6 @@ public class CarRentalsDetailsStep extends BaseStep {
     @And("The user validates that {string}, price, {string} and {string} of displayed car in detail_page matches with the selected car in filtering_page")
     public void theUserValidatesThatPriceAndOfDisplayedCarInDetail_pageMatchesWithTheSelectedCarInFiltering_page(String pick_up_location, String transmission, String car_category) {
         then(PAGES.getCarRentalsDetailsPage().getPickedUpLocationOfSelectedCar()).isEqualTo(pick_up_location);
-        System.out.println(CarRentalFilteringStep.SELECTED_CAR.getPriceOfSelectedCar());
         then(PAGES.getCarRentalsDetailsPage().getFeeOfSelectedCar()).isEqualTo(CarRentalFilteringStep.SELECTED_CAR.getPriceOfSelectedCar() * 3);
         then(PAGES.getCarRentalsDetailsPage().getTransmissionOfSelectedCar()).isEqualTo(transmission);
         then(PAGES.getCarRentalsDetailsPage().getCategoryOfTheSelectedCar()).isEqualTo(car_category);
