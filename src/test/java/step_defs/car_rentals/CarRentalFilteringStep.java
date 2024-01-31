@@ -15,6 +15,19 @@ import static org.assertj.core.api.BDDAssertions.then;
 public class CarRentalFilteringStep extends BaseStep {
     public static Car SELECTED_CAR;
     private static final Logger LOGGER = LogManager.getLogger(CarRentalFilteringStep.class);
+    //"<pickup_date>","<drop-off_date>" and "<pick up location>"
+    @Then("The user face with correct {string},{string} and {string} in Car Rental filtering page")
+    public void theUserFaceWithAndInCarRentalFilteringPage
+    (String expectedPickupDate, String expectedDropOffDate, String expectedPickupLocation) {
+        String actualPickupDate = PAGES.getCarRentalsFilteringPage().getPickupDate();
+        String actualDropOffDate = PAGES.getCarRentalsFilteringPage().getDropOffDate();
+        String actualPickupLocation = PAGES.getCarRentalsFilteringPage().getEnteredPickupLocation();
+
+        then(actualPickupDate).withFailMessage("Wrong pickup date!").isEqualTo(expectedPickupDate);
+        then(actualDropOffDate).withFailMessage("Wrong drop-off date!").isEqualTo(expectedDropOffDate);
+        then(actualPickupLocation).withFailMessage("Wrong pickup location!").isEqualTo(expectedPickupLocation);
+        LOGGER.debug("The user face with correct  pickup_date, drop-off_date and pick up location in Car Rental filtering page");
+    }
 
     @And("The user selects the {string}")
     public void theUserClicksOnTheButton(String priceRange) {
@@ -106,4 +119,6 @@ public class CarRentalFilteringStep extends BaseStep {
         PAGES.getCarRentalsFilteringPage().selectTheCheckBoxWithParameter(category);
         LOGGER.info("The user enters pickUpLocation,priceRange,transmission and category");
     }
+
+
 }

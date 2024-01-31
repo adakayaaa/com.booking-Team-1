@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CarRentalsCheckoutPage extends BasePage {
 
@@ -158,11 +159,16 @@ public class CarRentalsCheckoutPage extends BasePage {
             }
         }
 
-        return "Error message not found!";
+        throw new NoSuchElementException("There is not error message");
     }
 
     public void clickOnTheBookNowButton(){
-        bookNowButton.click();
+        actions.moveToElement(bookNowButton).build().perform();
+        try {
+            bookNowButton.click();
+        }catch (Exception e){
+            bookNowButton.click();
+        }
     }
 
     public String getBookingSuccessfullyMessage(){
@@ -172,7 +178,7 @@ public class CarRentalsCheckoutPage extends BasePage {
     public String getPickupLocationInTheThankMessage(){
         String[] partsOfLocation = pickupLocationInTheThankMessage.getText().split("-");
         int sizeOfLocation = partsOfLocation[0].length();
-        return partsOfLocation[0].substring(0, sizeOfLocation);
+        return partsOfLocation[0].substring(0, sizeOfLocation -1);
     }
 
     public void clickOnTheCloseButton(){

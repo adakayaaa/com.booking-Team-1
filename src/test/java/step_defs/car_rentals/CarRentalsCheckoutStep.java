@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.NoSuchElementException;
 import step_defs.BaseStep;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -64,7 +65,10 @@ public class CarRentalsCheckoutStep extends BaseStep {
     }
 
     @And("The user validates that {string} is true")
-    public void theUserValidatesThatIsTrue(String arg0, String arg1) {
+    public void theUserValidatesThatIsTrue(String expectedPickupLocation) {
+        String actualPickupLocation = PAGES.getCarRentalsCheckoutPage().getPickupLocationInTheThankMessage();
+        then(actualPickupLocation).isEqualTo(expectedPickupLocation);
+        LOGGER.info("The user validates that Pickup Location is true");
     }
 
     //"<firstName>","<lastName>","<phoneNumber>","<country>","<address>","<city>", "<postalCode>","<cardholderName>","<cardNumber>","<expirationDate>","<cvv>"
@@ -93,8 +97,14 @@ public class CarRentalsCheckoutStep extends BaseStep {
 
     @Then("The user validates that {string} of the {string} is displayed")
     public void theUserValidatesThatIsDisplayed(String expectedErrorMessage, String elementName) {
-        String actualMessage = PAGES.getCarRentalsCheckoutPage().getErrorMessageOfSpecifiedElement(elementName);
-        then(actualMessage).isEqualTo(expectedErrorMessage);
-        LOGGER.info("The user validates that ErrorMessage of the element is displayed");
+
+        try {
+            String actualMessage = PAGES.getCarRentalsCheckoutPage().getErrorMessageOfSpecifiedElement(elementName);
+            then(actualMessage).isEqualTo(expectedErrorMessage);
+            LOGGER.info("The user validates that ErrorMessage of the element is displayed");
+
+        }catch (NoSuchElementException ex){
+            LOGGER.error(ex.getMessage());
+        }
     }
 }

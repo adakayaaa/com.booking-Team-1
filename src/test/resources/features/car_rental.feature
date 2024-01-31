@@ -9,11 +9,14 @@
   #3.
 @car_rental
 Feature: Car Rental Tab
+
   Background:
     Given The user navigates to the Inar Academy Home page
+
   Scenario: Validate that user is on the Booking home page
     When The user clicks on the Booking link
     Then The user sees Booking Home page
+
   Scenario: Validate that Car Rentals head is visible
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
@@ -25,11 +28,23 @@ Feature: Car Rental Tab
     And The user clicks on the Car rentals tab
     And The user enter "<pick up location>","<pickup_date>","<pickup_hour>","<drop-off_date>" and "<drop_hour>"
     And The user clicks on the search button
-    Then The user face with "<pickup_date>","<drop-off_date>" and "<pick up location>" in Car Rental filtering page
+    Then The user face with correct "<pickup_date>","<drop-off_date>" and "<pick up location>" in Car Rental filtering page
     Examples:
       | pick up location | pickup_date | pickup_hour | drop-off_date | drop_hour |
-      | Heathrow Airport | 2024-01-28  | 01:00       | 2024-01-31    | 09:00     |
-  Scenario://TODO olumsuz senaryo date pickerı anladıktan sonra!!
+      | Heathrow Airport | 2024-03-15  | 08:00       | 2024-03-25    | 20:00     |
+
+  Scenario Outline: Validate that the user see error message when the user enter invalid inputs
+    When The user clicks on the Booking link
+    And The user clicks on the Car rentals tab
+    And The user enter "<pick up location>","<pickup_date>","<pickup_hour>","<drop-off_date>" and "<drop_hour>"
+    And The user clicks on the search button
+    Then The user face with "Please select a valid drop-off date after the pickup date and today."
+    Examples:
+      | pick up location | pickup_date | pickup_hour | drop-off_date | drop_hour |
+      | Heathrow Airport | 2023-02-02  | 08:00       | 2024-03-25    | 12:00     |
+      | Heathrow Airport | 2024-03-15  | 09:00       | 2023-03-25    | 12:00     |
+      | Heathrow Airport | 2024-03-15  | 12:00       | 2024-03-15    | 08:00     |
+
   Scenario Outline: Validate the Price Range check-boxes are selectable
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
@@ -46,6 +61,7 @@ Feature: Car Rental Tab
       | price_range | car_category | car_specs        | transmission |
       | 0-50        | Small        | Air Conditioning | Automatic    |
       | 200-250     | Large        | GPS Navigation   | Manual       |
+
   Scenario Outline: Validate that the car in the filtering page matches with entered criteria
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
@@ -60,14 +76,15 @@ Feature: Car Rental Tab
       | Grand Bazaar     | 100-150     | Sunroof                | Automatic    | Large        |
       | Taj Mahal        | 50-100      | Keyless Entry          | Automatic    | Minivan      |
       | Machu Picchu     | 50-100      | Backup Camera          | Automatic    | SUV          |
-    Scenario: Validate that sort buttons are functioning properly
-      When The user clicks on the Booking link
-      And The user clicks on the Car rentals tab
-      And The user clicks on the search button
-      And The user clicks on price highest sort button
-      Then The user validates that cars are sorted from highest to lowest
-      When The user clicks on price lowest sort button
-      Then The user validates that cars are sorted from lowest to highest
+
+  Scenario: Validate that sort buttons are functioning properly
+    When The user clicks on the Booking link
+    And The user clicks on the Car rentals tab
+    And The user clicks on the search button
+    And The user clicks on price highest sort button
+    Then The user validates that cars are sorted from highest to lowest
+    When The user clicks on price lowest sort button
+    Then The user validates that cars are sorted from lowest to highest
 
   Scenario Outline: Validate that the chosen car in the filtering page can be booked successfully with valid credentials
     When The user clicks on the Booking link
@@ -90,14 +107,15 @@ Feature: Car Rental Tab
     When The user clicks on the close button
     Then The user sees Booking Home page
     Examples:
-      | pick_up_location | price_range | car_spec      | transmission | car_category | firstName | lastName | cardholderName | phoneNumber | cardNumber       | country | address           | city   | postalCode |
-      | Central Park     | 50-100      | Leather Seats | Manual       | Medium       | Gurol     | Gokyar   | Inar Academy   | 5674567839  | 1234123412341234 | Turkey  | Köroğlu mahallesi | Ankara | 06360      |
+      | pick_up_location | price_range | car_spec      | transmission | car_category | firstName | lastName | cardholderName | phoneNumber | cardNumber       | country | address           | city   | postalCode | expirationDate | cvv |
+      | Central Park     | 50-100      | Leather Seats | Manual       | Medium       | Gurol     | Gokyar   | Inar Academy   | 5674567839  | 1234123412341234 | Turkey  | Köroğlu mahallesi | Ankara | 06360      | 06/28          | 324 |
 
   Scenario Outline: Validate true error messages are displayed in checkout page
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
     And The user clicks on the search button
     And The user enters "Heathrow Airport","0-50","Manual" and "Small"
+    And The user clicks on search button in filtering page
     And The user clicks View Dial button of the #1 element
     And The user clicks on go_to_book button
     When The user enters user information "<firstName>","<lastName>","<phoneNumber>","<country>","<address>","<city>", "<postalCode>","<cardholderName>","<cardNumber>","<expirationDate>","<cvv>"
