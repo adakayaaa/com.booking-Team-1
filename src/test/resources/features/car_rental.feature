@@ -22,7 +22,7 @@ Feature: Car Rental Tab
     And The user clicks on the Car rentals tab
     Then The user validates that "Rent a Car for Your Trip" message is visible
 
-  Scenario: Validate that search car method is functioning properly
+  Scenario: Validate that search cars button is functioning properly
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
     And The user clicks on the search button
