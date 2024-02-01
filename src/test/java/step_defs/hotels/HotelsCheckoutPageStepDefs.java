@@ -88,7 +88,8 @@ public class HotelsCheckoutPageStepDefs extends BaseStep {
 		}
 		catch (NoSuchElementException ex) {
 			logger.error("white screen of death error");
-			throw new NoSuchElementException(Arrays.toString(ex.getStackTrace()));
+			throw new NoSuchElementException(ex.getMessage());
 		}
 	}
+
 }
