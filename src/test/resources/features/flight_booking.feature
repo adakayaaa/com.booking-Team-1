@@ -5,12 +5,12 @@
 #Test Case: flight_booking
 #Test Title: Validate the Flight Tab Includes Search Bar for Flight
   
-@flight
+@flight @smoke
 Feature: Flight Tab
 
   Background:
-    Given the user is on the Inar Academy homepage
-    And the user clicks on the Booking link
+    Given The user on the Inar Academy Home page
+    And The user clicks on the booking link
 
   Scenario:Verification of click flights tab
 

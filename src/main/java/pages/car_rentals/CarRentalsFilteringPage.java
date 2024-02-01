@@ -62,7 +62,7 @@ public class CarRentalsFilteringPage extends BasePage {
 	@FindBy(css = ".carRentalItemDetails > h3")
 	private List<WebElement> brandsOfCars;
 
-	public String getCurrentURL(){
+	public String getCurrentURL() {
 		return driver.getCurrentUrl();
 	}
 

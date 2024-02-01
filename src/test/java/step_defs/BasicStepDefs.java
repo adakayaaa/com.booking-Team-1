@@ -1,10 +1,9 @@
-package step_defs.hotels;
+package step_defs;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import step_defs.BaseStep;
 
 public class BasicStepDefs extends BaseStep {
 
