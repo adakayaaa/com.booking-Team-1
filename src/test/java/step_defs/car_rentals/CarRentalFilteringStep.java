@@ -17,6 +17,15 @@ public class CarRentalFilteringStep extends BaseStep {
 
     private static final Logger LOGGER = LogManager.getLogger(CarRentalFilteringStep.class);
 
+    @Then("The user validates that car rental page is visible")
+    public void theUserValidatesThatCarRentalPageIsVisible() {
+        String expectedURL = "https://InarAcademy:Fk160621.@test.inar-academy.com/booking/cars";
+        String actualURL = PAGES.getCarRentalsFilteringPage().getCurrentURL();
+
+        then(actualURL).isEqualTo(expectedURL);
+        LOGGER.debug("The user validates that car rental page is visible");
+    }
+
     @Then("The user face with correct {string},{string} and {string} in Car Rental filtering page")
     public void theUserFaceWithAndInCarRentalFilteringPage(String expectedPickupDate, String expectedDropOffDate,
                                                            String expectedPickupLocation) {
@@ -122,5 +131,6 @@ public class CarRentalFilteringStep extends BaseStep {
         PAGES.getCarRentalsFilteringPage().selectTheCheckBoxWithParameter(category);
         LOGGER.info("The user enters pickUpLocation,priceRange,transmission and category");
     }
+
 
 }
