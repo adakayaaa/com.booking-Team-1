@@ -17,21 +17,23 @@ public class FlightsExtraPage extends BaseStep {
 
 	@Then("The user should see {string} text")
 	public void theUserShouldSeeText(String text) {
-		then(PAGES.getFlightsExtraPage().getTitleOfExtraPage()).withFailMessage("The user couldn't click extra button").isEqualTo(text);
+		then(PAGES.getFlightsExtraPage().getTitleOfExtraPage()).withFailMessage("The user couldn't click extra button")
+			.isEqualTo(text);
 		LOGGER.debug("The user should see title of extra page");
 	}
+
 	@When("The user selects as {string} meal")
 	public void theUserSelectsAs(String mealName) {
 		LOGGER.info("The user selects a meal");
 	}
-
 
 	@Then("The user should see price of {string} meal should have been added to total price")
 	public void theUserShouldSeePriceOfShouldHaveBeenAddedToTotalPrice(String mealName) {
 		double initTotalPrice = PAGES.getFlightsExtraPage().getTotalPrice();
 		PAGES.getFlightsExtraPage().setSelectMeal(mealName);
 		double priceOfMeal = PAGES.getFlightsExtraPage().priceOfMeal();
-		then(PAGES.getFlightsExtraPage().getTotalPrice()).withFailMessage("Price of meal is added wrongly").isEqualTo(initTotalPrice + priceOfMeal);
+		then(PAGES.getFlightsExtraPage().getTotalPrice()).withFailMessage("Price of meal is added wrongly")
+			.isEqualTo(initTotalPrice + priceOfMeal);
 		LOGGER.debug("The user should see price of selected meal should have been added to total price");
 	}
 
@@ -43,10 +45,10 @@ public class FlightsExtraPage extends BaseStep {
 
 	@Then("The user should see that {string} title of checkout page")
 	public void theUserShouldSeeThatTitleOfCheckoutPage(String title) {
-		then(PAGES.getFlightsCheckoutPage().getTitleOfCardHolder()).withFailMessage("The user couldn't pass checkout page").isEqualTo(title);
+		then(PAGES.getFlightsCheckoutPage().getTitleOfCardHolder())
+			.withFailMessage("The user couldn't pass checkout page")
+			.isEqualTo(title);
 		LOGGER.debug("The user should see that title of checkout page");
 	}
 
-
-	}
-
+}

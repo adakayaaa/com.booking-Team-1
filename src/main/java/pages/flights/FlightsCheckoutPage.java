@@ -30,40 +30,36 @@ public class FlightsCheckoutPage extends BasePage {
 		return titleOfCardholder.getText();
 	}
 
-	public void enterCardholdersName(String name){
+	public void enterCardholdersName(String name) {
 		listOfCardInput.get(0).sendKeys(name);
 	}
-	public void enterCardNumber(String cardNumber){
+
+	public void enterCardNumber(String cardNumber) {
 		listOfCardInput.get(1).sendKeys(cardNumber);
 	}
 
-	public void enterExpirationDate(String expirationDate){
+	public void enterExpirationDate(String expirationDate) {
 		listOfCardInput.get(2).sendKeys(expirationDate);
 	}
-	public void enterCvvCode(String cvvCode){
+
+	public void enterCvvCode(String cvvCode) {
 		listOfCardInput.get(3).sendKeys(cvvCode);
 	}
 
-	public void clickOnCompleteButton(){
+	public void clickOnCompleteButton() {
 		completeBookingButton.click();
 	}
 
-	public String getThanksMessage(){
+	public String getThanksMessage() {
 		return thanksMessage.getText();
 	}
 
-	public void clickOnCloseButton(){
+	public void clickOnCloseButton() {
 		closeButton.click();
 	}
 
-	public boolean isErrorMessageDisplayed(){
+	public boolean isErrorMessageDisplayed() {
 		return !errorMessage.getText().isEmpty();
 	}
-
-
-
-
-
-
 
 }

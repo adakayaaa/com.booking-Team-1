@@ -8,17 +8,18 @@ import step_defs.BaseStep;
 
 public class BasicStepDefs extends BaseStep {
 
-    Logger logger = LogManager.getLogger(BasicStepDefs.class);
+	Logger logger = LogManager.getLogger(BasicStepDefs.class);
 
-    @Given("The user on the Inar Academy Home page")
-    public void the_user_on_the_inar_academy_home_page() {
-        DRIVER.get("https://InarAcademy:Fk160621.@test.inar-academy.com");
-        logger.info("The user on the Inar Academy Home Page");
-    }
+	@Given("The user on the Inar Academy Home page")
+	public void the_user_on_the_inar_academy_home_page() {
+		DRIVER.get("https://InarAcademy:Fk160621.@test.inar-academy.com");
+		logger.info("The user on the Inar Academy Home Page");
+	}
 
-    @And("The user clicks on the booking link")
-    public void the_user_clicks_on_the_booking_link() {
-        PAGES.getHomePage().clickOnBookingLink();
-        logger.info("The user clicks on the booking link");
-    }
+	@And("The user clicks on the booking link")
+	public void the_user_clicks_on_the_booking_link() {
+		PAGES.getHomePage().clickOnBookingLink();
+		logger.info("The user clicks on the booking link");
+	}
+
 }

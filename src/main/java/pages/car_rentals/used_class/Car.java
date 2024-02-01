@@ -3,57 +3,64 @@ package pages.car_rentals.used_class;
 import pages.BasePage;
 
 public class Car extends BasePage {
-    private  String carName;
-    private double priceOfCar;
-    private String pickupLocationOfSelectedCar;
-    private String transmissionOfSelectedCar;
-    private String categoryOfSelectedCar;
 
-    public Car(){
+	private String carName;
 
-    }
-    public Car(String carName,double priceOfCar){
-        this.carName=carName;
-        this.priceOfCar=priceOfCar;
-    }
+	private double priceOfCar;
 
-    public void setPickupLocationOfSelectedCar(String pickupLocationOfSelectedCar) {
-        this.pickupLocationOfSelectedCar = pickupLocationOfSelectedCar;
-    }
+	private String pickupLocationOfSelectedCar;
 
-    public void setTransmissionOfSelectedCar(String transmissionOfSelectedCar) {
-        this.transmissionOfSelectedCar = transmissionOfSelectedCar;
-    }
+	private String transmissionOfSelectedCar;
 
-    public void setCategoryOfSelectedCar(String categoryOfSelectedCar) {
-        this.categoryOfSelectedCar = categoryOfSelectedCar;
-    }
+	private String categoryOfSelectedCar;
 
-    public void setCarName(String carName) {
-        this.carName = carName;
-    }
+	public Car() {
 
-    public String getPickupLocationOfSelectedCar() {
-        return pickupLocationOfSelectedCar;
-    }
+	}
 
-    public String getTransmissionOfSelectedCar() {
-        return transmissionOfSelectedCar;
-    }
+	public Car(String carName, double priceOfCar) {
+		this.carName = carName;
+		this.priceOfCar = priceOfCar;
+	}
 
-    public String getCategoryOfSelectedCar() {
-        return categoryOfSelectedCar;
-    }
+	public void setPickupLocationOfSelectedCar(String pickupLocationOfSelectedCar) {
+		this.pickupLocationOfSelectedCar = pickupLocationOfSelectedCar;
+	}
 
-    public void setPriceOfCar(double priceOfCar) {
-        this.priceOfCar = priceOfCar;
-    }
+	public void setTransmissionOfSelectedCar(String transmissionOfSelectedCar) {
+		this.transmissionOfSelectedCar = transmissionOfSelectedCar;
+	}
 
-    public String getSelectedCarName() {
-        return carName;
-    }
+	public void setCategoryOfSelectedCar(String categoryOfSelectedCar) {
+		this.categoryOfSelectedCar = categoryOfSelectedCar;
+	}
 
-    public double getPriceOfSelectedCar() {
-        return priceOfCar;
-    }
+	public void setCarName(String carName) {
+		this.carName = carName;
+	}
+
+	public String getPickupLocationOfSelectedCar() {
+		return pickupLocationOfSelectedCar;
+	}
+
+	public String getTransmissionOfSelectedCar() {
+		return transmissionOfSelectedCar;
+	}
+
+	public String getCategoryOfSelectedCar() {
+		return categoryOfSelectedCar;
+	}
+
+	public void setPriceOfCar(double priceOfCar) {
+		this.priceOfCar = priceOfCar;
+	}
+
+	public String getSelectedCarName() {
+		return carName;
+	}
+
+	public double getPriceOfSelectedCar() {
+		return priceOfCar;
+	}
+
 }

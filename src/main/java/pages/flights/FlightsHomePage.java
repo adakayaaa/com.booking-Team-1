@@ -1,5 +1,6 @@
 package pages.flights;
 
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -43,7 +44,13 @@ public class FlightsHomePage extends BasePage {
 	private WebElement titleOfFindYourStay;
 
 	public void clickOnFlightTab() {
-		flightTab.click();
+		try {
+			flightTab.click();
+		}
+		catch (ElementClickInterceptedException ex) {
+			flightTab.click();
+		}
+
 	}
 
 	public String getTitleOfFlightTab() {
@@ -104,7 +111,7 @@ public class FlightsHomePage extends BasePage {
 		searchFlightsButton.click();
 	}
 
-	public String getTitleOfStayPage(){
+	public String getTitleOfStayPage() {
 		return titleOfFindYourStay.getText();
 	}
 
