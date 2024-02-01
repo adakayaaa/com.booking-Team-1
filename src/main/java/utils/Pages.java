@@ -49,7 +49,6 @@ public class Pages {
 
 	private TabBar tabBar;
 
-
 	public Pages() {
 		this.homePage = new HomePage();
 		this.flightsHomePage = new FlightsHomePage();
@@ -147,4 +146,5 @@ public class Pages {
 	public TabBar getTabBar() {
 		return tabBar;
 	}
+
 }

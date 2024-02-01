@@ -10,93 +10,93 @@ import java.util.List;
 
 public class HotelsBookingPage extends BasePage {
 
-    @FindBy(className = "hotel-title")
-    private WebElement hotelTitle;
+	@FindBy(className = "hotel-title")
+	private WebElement hotelTitle;
 
-    @FindBy(className = "hotel-address")
-    private WebElement hotelAdress;
+	@FindBy(className = "hotel-address")
+	private WebElement hotelAdress;
 
-    @FindBy(css = ".justify-content-between.fs-4 > span:nth-child(2)")
-    private WebElement calculatedOriginalPrice;
+	@FindBy(css = ".justify-content-between.fs-4 > span:nth-child(2)")
+	private WebElement calculatedOriginalPrice;
 
-    @FindBy(css = ".ms-2.fw-normal")
-    private List<WebElement> yesOrNoOptions;
+	@FindBy(css = ".ms-2.fw-normal")
+	private List<WebElement> yesOrNoOptions;
 
-    @FindBy(className = "form-control")
-    private List<WebElement> userInformationTextFields;
+	@FindBy(className = "form-control")
+	private List<WebElement> userInformationTextFields;
 
-    @FindBy(xpath = "//input[@class='me-3 fs-4']/../span")
-    private List<WebElement> bookingPersonOptions;
+	@FindBy(xpath = "//input[@class='me-3 fs-4']/../span")
+	private List<WebElement> bookingPersonOptions;
 
-    @FindBy(css = ".total-stay > div")
-    private WebElement lengthOfStay;
+	@FindBy(css = ".total-stay > div")
+	private WebElement lengthOfStay;
 
-    @FindBy(className = "form-select")
-    private WebElement arrivalSelection;
+	@FindBy(className = "form-select")
+	private WebElement arrivalSelection;
 
-    @FindBy(className = "btn")
-    private WebElement nextFinalDetailsButton;
+	@FindBy(className = "btn")
+	private WebElement nextFinalDetailsButton;
 
-    @FindBy(className = "invalid-feedback")
-    private WebElement errorMessage;
+	@FindBy(className = "invalid-feedback")
+	private WebElement errorMessage;
 
-    public String getHotelTitle(){
-        return hotelTitle.getText();
-    }
+	public String getHotelTitle() {
+		return hotelTitle.getText();
+	}
 
-    public String getHotelAdress(){
-        return hotelAdress.getText();
-    }
+	public String getHotelAdress() {
+		return hotelAdress.getText();
+	}
 
-    public boolean isSelectedCityNameMatchedDisplayedCity(String city) {
-        return getHotelAdress().contains(city);
-    }
+	public boolean isSelectedCityNameMatchedDisplayedCity(String city) {
+		return getHotelAdress().contains(city);
+	}
 
-    public int getOriginalPrice(){
-        String[] array = calculatedOriginalPrice.getText().split("[=.]");
-        return Integer.parseInt(array[1].substring(2));
-    }
+	public int getOriginalPrice() {
+		String[] array = calculatedOriginalPrice.getText().split("[=.]");
+		return Integer.parseInt(array[1].substring(2));
+	}
 
-    public void selectYesOrNo(String option){
-        List<String> nameOfOptions = yesOrNoOptions.stream().map(WebElement::getText).toList();
-        yesOrNoOptions.get(nameOfOptions.indexOf(option)).click();
-    }
+	public void selectYesOrNo(String option) {
+		List<String> nameOfOptions = yesOrNoOptions.stream().map(WebElement::getText).toList();
+		yesOrNoOptions.get(nameOfOptions.indexOf(option)).click();
+	}
 
-    public void enterUserFirstName(String firstName){
-        userInformationTextFields.get(0).sendKeys(firstName);
-    }
+	public void enterUserFirstName(String firstName) {
+		userInformationTextFields.get(0).sendKeys(firstName);
+	}
 
-    public void enterUserLastName(String lastName){
-        userInformationTextFields.get(1).sendKeys(lastName);
-    }
+	public void enterUserLastName(String lastName) {
+		userInformationTextFields.get(1).sendKeys(lastName);
+	}
 
-    public void enterUserEmailAddress(String emailAddress){
-        userInformationTextFields.get(2).sendKeys(emailAddress);
-    }
+	public void enterUserEmailAddress(String emailAddress) {
+		userInformationTextFields.get(2).sendKeys(emailAddress);
+	}
 
-    public void selectBookingPerson(String bookingPerson){
-        List<String> valueOfButtons = bookingPersonOptions.stream().map(WebElement::getText).toList();
-        bookingPersonOptions.get(valueOfButtons.indexOf(bookingPerson)).click();
-    }
+	public void selectBookingPerson(String bookingPerson) {
+		List<String> valueOfButtons = bookingPersonOptions.stream().map(WebElement::getText).toList();
+		bookingPersonOptions.get(valueOfButtons.indexOf(bookingPerson)).click();
+	}
 
-    public void selectArrivalTime(String arrivalTime){
-        BrowserUtils.scrollDownWithPageDown();
-        BrowserUtils.wait(1);
+	public void selectArrivalTime(String arrivalTime) {
+		BrowserUtils.scrollDownWithPageDown();
+		BrowserUtils.wait(1);
 
-        Select select = new Select(arrivalSelection);
-        select.selectByVisibleText(arrivalTime);
-    }
+		Select select = new Select(arrivalSelection);
+		select.selectByVisibleText(arrivalTime);
+	}
 
-    public void clicksOnNextFinalDetailsButton(){
-        nextFinalDetailsButton.click();
-    }
+	public void clicksOnNextFinalDetailsButton() {
+		nextFinalDetailsButton.click();
+	}
 
-    public String getErrorMessage(){
-        return errorMessage.getText();
-    }
+	public String getErrorMessage() {
+		return errorMessage.getText();
+	}
 
-    public String getLengthOfStay(){
-        return lengthOfStay.getText();
-    }
+	public String getLengthOfStay() {
+		return lengthOfStay.getText();
+	}
 
 }

@@ -5,7 +5,7 @@
 #Test Case: flight_booking
 #Test Title: Validate the Flight Tab Includes Search Bar for Flight
   
-@example
+@flight
 Feature: Flight Tab
 
   Background:

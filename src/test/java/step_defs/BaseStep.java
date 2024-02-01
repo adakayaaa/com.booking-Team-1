@@ -10,8 +10,9 @@ public abstract class BaseStep {
 
 	protected static Pages PAGES;
 
-	public BaseStep(){
+	public BaseStep() {
 		DRIVER = DriverManager.getWebDriver();
 		PAGES = new Pages();
 	}
+
 }

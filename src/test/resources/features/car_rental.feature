@@ -31,7 +31,7 @@ Feature: Car Rental Tab
     Then The user face with correct "<pickup_date>","<drop-off_date>" and "<pick up location>" in Car Rental filtering page
     Examples:
       | pick up location | pickup_date | pickup_hour | drop-off_date | drop_hour |
-      | Heathrow Airport | 03/15/2024  | 08:00       | 03/25/2024       | 20:00     |
+      | Heathrow Airport | 03/15/2024  | 08:00       | 03/25/2024    | 20:00     |
 
   Scenario Outline: Validate that the user see error message when the user enter invalid inputs
     When The user clicks on the Booking link

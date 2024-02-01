@@ -12,6 +12,7 @@ import utils.BrowserUtils;
 import static org.assertj.core.api.BDDAssertions.then;
 
 public class FlightsHomePage extends BaseStep {
+
 	private static Logger LOGGER = LogManager.getLogger(FlightsHomePage.class);
 
 	@Given("the user is on the Inar Academy homepage")
@@ -87,8 +88,9 @@ public class FlightsHomePage extends BaseStep {
 
 	@Then("The user should see that {string} header text message is displayed")
 	public void theUserShouldSeeThatHeaderTextMessageIsDisplayed(String headerText) {
-		then(PAGES.getFlightsDetailsPage().getTitleOfDetailsPage()).withFailMessage("The user couldn't pass on the detail page!")
-				.isEqualTo(headerText);
+		then(PAGES.getFlightsDetailsPage().getTitleOfDetailsPage())
+			.withFailMessage("The user couldn't pass on the detail page!")
+			.isEqualTo(headerText);
 		LOGGER.debug("The user should see that title on the details page of the flight tab");
 	}
 
@@ -96,7 +98,8 @@ public class FlightsHomePage extends BaseStep {
 	public void theUserShouldSeeThatOnlyListOfAndAreDisplayed(String departureCountry, String arrivalCountry) {
 		then(PAGES.getFlightsDetailsPage().isSelectedDepartureCountry(departureCountry)).isTrue();
 		then(PAGES.getFlightsDetailsPage().isSelectedArrivalCountry(arrivalCountry)).isTrue();
-		LOGGER.debug("The user should see that list of the departure country and also arrival country on the details page of the flight tab");
+		LOGGER.debug(
+				"The user should see that list of the departure country and also arrival country on the details page of the flight tab");
 	}
 
 	@And("The user should see that only round way on the tickets")
@@ -108,14 +111,17 @@ public class FlightsHomePage extends BaseStep {
 
 	@And("The user should see that only list of {string} is displayed")
 	public void theUserShouldSeeThatOnlyListOfIsDisplayed(String departureDate) {
-		then(PAGES.getFlightsDetailsPage().isDepartureDate(departureDate)).withFailMessage("The day is not departure day!").isTrue();
+		then(PAGES.getFlightsDetailsPage().isDepartureDate(departureDate))
+			.withFailMessage("The day is not departure day!")
+			.isTrue();
 		LOGGER.debug("The user should see that onliy list of departure date on the tickets");
 	}
 
-
 	@Then("The user should see {string}text")
 	public void theUserShouldSeeText(String titleOfStayPage) {
-		then(PAGES.getFlightsHomePage().getTitleOfStayPage()).withFailMessage("The close button is not working!").isEqualTo(titleOfStayPage);
+		then(PAGES.getFlightsHomePage().getTitleOfStayPage()).withFailMessage("The close button is not working!")
+			.isEqualTo(titleOfStayPage);
 		LOGGER.debug("The user should see that title of stay page of the flight tab");
 	}
+
 }

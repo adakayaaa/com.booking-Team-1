@@ -11,7 +11,7 @@
   #3.
   #4.
 
-@hotelstab @smoke
+@hotels @smoke
 Feature: Booking Hotel Tab
 
   Background:
@@ -184,17 +184,6 @@ Feature: Booking Hotel Tab
     And The user clicks on Next, Final Details button
 
     Then The user should see that error message as "<error type> is required"
-
-    When The user selects country as "<country>"
-    And The user enters phone number as "<phone number>"
-    And The user enter card holder's name as "<first name> <last name>"
-    And The user enters card number as "<card number>"
-    And The user enters expiration date as "<expiration date>"
-    And The user enters cvv or cvc code as "<cvc/cvv code>"
-    And The user clicks on Compelete Booking button
-
-    Then The user should see that error message as "Please fill in all the required fields." on checkout page
-
 
     Examples:
       | first name | last name | email              | error type    |
