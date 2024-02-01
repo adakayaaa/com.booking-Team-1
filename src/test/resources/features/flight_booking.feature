@@ -183,7 +183,7 @@ Feature: Flight Tab
       | Emir Uyanık       | 1234567812345678 | 12/25           | 444      |
       | Yusuf Bilal Cetin | 5476983254675234 | 08/29           | 234      |
       | Ada Kaya          | 1234566543217654 | 10/30           | 432      |
-
+  @failed
   Scenario Outline:Verification of Flights Check Out Page With Invalid Credentials
     Given The user is on the flights page
     When The user clicks on the round way radio
@@ -216,7 +216,7 @@ Feature: Flight Tab
       | Emir Uyanık       | 12345            | 12/25           | 444      |
       | Yusuf Bilal Cetin | 5476983254675234 | 08/25           | 23       |
 
-
+  @failed
   Scenario:Verification of Flights Check Out Page With Invalid Expiration Date
     Given The user is on the flights page
     When The user clicks on the round way radio
@@ -244,7 +244,7 @@ Feature: Flight Tab
 
     Then The user should see error message
 
-
+@failed
   Scenario Outline:Verification of Flights Booking Page with Negative Scenarios
     Given The user is on the flights page
 
@@ -272,6 +272,7 @@ Feature: Flight Tab
       | e              | 5474567896   | Emir       | Uyanık    | Male   | 1987 | 7     | 4   |
       | emir@gmail.com | 54           | Emir       | Uyanık    | Male   | 1987 | 7     | 4   |
 
+  @failed
   Scenario:Verification of Flights Result Page For Departure Ticket Price
     Given The user is on the flights page
     When The user clicks on the round way radio
