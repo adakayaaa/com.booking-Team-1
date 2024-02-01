@@ -62,6 +62,10 @@ public class CarRentalsFilteringPage extends BasePage {
 	@FindBy(css = ".carRentalItemDetails > h3")
 	private List<WebElement> brandsOfCars;
 
+	public String getCurrentURL(){
+		return driver.getCurrentUrl();
+	}
+
 	public String getPickupDate() {
 		String[] pickupDateParts = pickupDate.getAttribute("value").split("-");
 		return pickupDateParts[1] + "/" + pickupDateParts[2] + "/" + pickupDateParts[0];
