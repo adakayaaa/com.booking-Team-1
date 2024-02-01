@@ -47,7 +47,7 @@ public class HotelsBookingPageStepDefs extends BaseStep {
 		logger.debug("The user entered last name as " + lastName);
 	}
 
-	@And("The user enters email adresses as {string}")
+	@And("The user enters email addresses as {string}")
 	public void theUserEntersEmailAdressesAs(String emailAddress) {
 		PAGES.getHotelsBookingPage().enterUserEmailAddress(emailAddress);
 		logger.debug("The user entered email adresses as " + emailAddress);

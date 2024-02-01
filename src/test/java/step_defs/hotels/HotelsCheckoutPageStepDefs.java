@@ -8,6 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import step_defs.BaseStep;
 import utils.BrowserUtils;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.BDDAssertions.then;
 
 public class HotelsCheckoutPageStepDefs extends BaseStep {
@@ -86,8 +88,7 @@ public class HotelsCheckoutPageStepDefs extends BaseStep {
 		}
 		catch (NoSuchElementException ex) {
 			logger.error("white screen of death error");
+			throw new NoSuchElementException(Arrays.toString(ex.getStackTrace()));
 		}
-
 	}
-
 }
