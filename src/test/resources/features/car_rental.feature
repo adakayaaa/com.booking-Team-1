@@ -31,7 +31,7 @@ Feature: Car Rental Tab
     Then The user face with correct "<pickup_date>","<drop-off_date>" and "<pick up location>" in Car Rental filtering page
     Examples:
       | pick up location | pickup_date | pickup_hour | drop-off_date | drop_hour |
-      | Heathrow Airport | 2024-03-15  | 08:00       | 2024-03-25    | 20:00     |
+      | Heathrow Airport | 03/15/2024  | 08:00       | 03/25/2024       | 20:00     |
 
   Scenario Outline: Validate that the user see error message when the user enter invalid inputs
     When The user clicks on the Booking link
@@ -41,9 +41,9 @@ Feature: Car Rental Tab
     Then The user face with "Please select a valid drop-off date after the pickup date and today."
     Examples:
       | pick up location | pickup_date | pickup_hour | drop-off_date | drop_hour |
-      | Heathrow Airport | 2023-02-02  | 08:00       | 2024-03-25    | 12:00     |
-      | Heathrow Airport | 2024-03-15  | 09:00       | 2023-03-25    | 12:00     |
-      | Heathrow Airport | 2024-03-15  | 12:00       | 2024-03-15    | 08:00     |
+      | Heathrow Airport | 02/02/2023  | 08:00       | 03/27/2024    | 12:00     |
+      | Heathrow Airport | 03/15/2024  | 09:00       | 03/25/2023    | 12:00     |
+      | Heathrow Airport | 03/15/2024  | 12:00       | 03/15/2024    | 08:00     |
 
   Scenario Outline: Validate the Price Range check-boxes are selectable
     When The user clicks on the Booking link

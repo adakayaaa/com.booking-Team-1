@@ -52,10 +52,13 @@ public class CarRentalsFilteringPage extends BasePage {
     @FindBy(css = ".carRentalItemDetails > h3")
     private List<WebElement> brandsOfCars;
     public String getPickupDate(){
-        return pickupDate.getAttribute("value");
+        String[] pickupDateParts = pickupDate.getAttribute("value").split("-");
+        return pickupDateParts[1] + "/" + pickupDateParts[2] + "/" +  pickupDateParts[0];
     }
     public String getDropOffDate(){
-        return dropOffDate.getAttribute("value");
+        String[] dropOffDateParts = dropOffDate.getAttribute("value").split("-");
+        return dropOffDateParts[1] + "/" + dropOffDateParts[2] + "/" +  dropOffDateParts[0];
+
     }
     public int getDayOfPickupDate(){
         String[] partsOfDate = pickupDate.getAttribute("value").split("-");

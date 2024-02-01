@@ -4,12 +4,17 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import pages.HomePage;
 import step_defs.BaseStep;
 import utils.BrowserUtils;
 
+import static org.assertj.core.api.BDDAssertions.then;
+
 public class CarRentalHomeStep extends BaseStep {
+    private static final Logger LOGGER = LogManager.getLogger(CarRentalHomeStep.class);
     HomePage homePage;
     @Given("The user navigates to the Inar Academy Home page")
     public void the_user_navigates_to_the_Inar_Academy_Home_page(){
@@ -47,19 +52,21 @@ public class CarRentalHomeStep extends BaseStep {
         PAGES.getCarRentalsHomePage().clickOnTheSearchButton();
     }
 
-    //"<pick up location>","<pickup_date>","<pickup_hour>","<drop-off_date>" and "<drop_hour>"
     @And("The user enter {string},{string},{string},{string} and {string}")
     public void theUserEnterCredentialsInCarRentalsHomePage
     (String pickupLocation , String pickup_date, String pickup_hour, String dropOffDate, String drop_hour ){
         PAGES.getCarRentalsHomePage().enterThePickupLocation(pickupLocation);
-        PAGES.getCarRentalsHomePage().setDropOffDate(dropOffDate);
+        PAGES.getCarRentalsHomePage().enterThePickUpDate(pickup_date);
         PAGES.getCarRentalsHomePage().selectThePickupHour(pickup_hour);
+        PAGES.getCarRentalsHomePage().enterTheDropOffDate(dropOffDate);
         PAGES.getCarRentalsHomePage().selectTheDropOffHour(drop_hour);
-        PAGES.getCarRentalsHomePage().setPickupDate(pickup_date);
     }
 
     @Then("The user face with {string}")
     public void theUserFaceWith(String errorMessage) {
+        String actualMessage = PAGES.getCarRentalsHomePage().getErrorMessageInHomePage();
+        then(actualMessage).isEqualTo(errorMessage);
+        LOGGER.debug("Error message displayed");
 
     }
 }
