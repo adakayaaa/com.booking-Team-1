@@ -3,13 +3,14 @@ package pages.car_rentals;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.BasePage;
 import utils.BrowserUtils;
-import utils.DriverManager;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CarRentalsHomePage extends BasePage {
@@ -29,6 +30,9 @@ public class CarRentalsHomePage extends BasePage {
 
     @FindBy(css = ".form-select")
     private List<WebElement> pickupAndDropOffHourElements;
+
+    @FindBy(css = ".headerDateInput")
+    private List<WebElement> pickUpAndDropOffDates;
 
     @FindBy(xpath = "//*[text() = 'Search Cars']")
     private WebElement searchButtonLink;
@@ -63,7 +67,6 @@ public class CarRentalsHomePage extends BasePage {
 
 
     public void clickOnTheSearchButton() {
-        BrowserUtils.wait(4.0);
         searchButtonLink.click();
         BrowserUtils.wait(2.0);
     }
@@ -73,20 +76,26 @@ public class CarRentalsHomePage extends BasePage {
         javascriptExecutor.executeScript("document.querySelector('." + className + "').value='" + value + "'");
     }
 
-    public void setPickupDate(String pickupDate) {
-        String classValue = "headerSearchText > .headerDateInput";
-        setElementValueByClassName(classValue, pickupDate);
-        BrowserUtils.wait(4.0);
-    }
 
-    public void setDropOffDate(String pickupDate) {
-        String classValue = "headerSearchText > .position-relative";
-        setElementValueByClassName(classValue, pickupDate);
-    }
     public String getErrorMessageInHomePage(){
         Alert alert  = driver.switchTo().alert();
         System.out.println(alert.getText());
         return alert.getText();
+    }
+    public void enterThePickUpDate(String date){
+        List<String> list = Arrays.asList(date.split("/"));
+        actions.keyDown(Keys.TAB).keyUp(Keys.TAB).build().perform();
+        list.forEach(data -> {
+            pickUpAndDropOffDates.get(0).sendKeys(data);
+        });
+    }
+
+    public void enterTheDropOffDate(String date){
+        List<String> list = Arrays.asList(date.split("/"));
+        actions.keyDown(Keys.TAB).keyUp(Keys.TAB).build().perform();
+        list.forEach(data -> {
+            pickUpAndDropOffDates.get(1).sendKeys(data);
+        });
     }
 
 }
