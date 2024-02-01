@@ -178,7 +178,7 @@ Feature: Booking Hotel Tab
     And The user selects "Yes"
     And The user enters first name as "<first name>"
     And The user enters last name as "<last name>"
-    And The user enters email adresses as "<email>"
+    And The user enters email addresses as "<email>"
     And The user selects booking person as "I'm the main guest"
     And The user selects arrival time as "10:00 PM – 11:00 PM"
     And The user clicks on Next, Final Details button
