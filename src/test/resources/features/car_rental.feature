@@ -119,7 +119,7 @@ Feature: Car Rental Tab
       | pick_up_location | price_range | car_spec      | transmission | car_category | firstName | lastName | cardholderName | phoneNumber | cardNumber       | country | address           | city   | postalCode | expirationDate | cvv |
       | Central Park     | 50-100      | Leather Seats | Manual       | Medium       | Gurol     | Gokyar   | Inar Academy   | 5674567839  | 1234123412341234 | Turkey  | Köroğlu mahallesi | Ankara | 06360      | 06/28          | 324 |
 
-  Scenario Outline: Validate true error messages are displayed in checkout page
+  Scenario Outline: Validate element required error messages are displayed in checkout page
     When The user clicks on the Booking link
     And The user clicks on the Car rentals tab
     And The user clicks on the search button
@@ -130,16 +130,35 @@ Feature: Car Rental Tab
     When The user enters user information "<firstName>","<lastName>","<phoneNumber>","<country>","<address>","<city>", "<postalCode>","<cardholderName>","<cardNumber>","<expirationDate>","<cvv>"
     Then The user validates that "<true_error_message>" of the "<element_name>" is displayed
     Examples:
-      | firstName  | lastName | phoneNumber | country | address  | city   | postalCode | cardholderName | cardNumber       | expirationDate | cvv | element_name    | true_error_message                                            |
-      |            | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | first name      | First name is required                                        |
-      | Celalettin |          | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | last name       | Last name is required                                         |
-      | Celalettin | Akturk   | 12          | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | phone number    | Invalid phone number                                          |
-      | Celalettin | Akturk   | 1234567891  |         | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | country         | Country is required                                           |
-      | Celalettin | Akturk   | 1234567891  | Turkey  |          | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | address         | Address is required                                           |
-      | Celalettin | Akturk   | 1234567891  | Turkey  | A street |        | 12345      | cello          | 1234123412341234 | 06/28          | 324 | city            | City is required                                              |
-      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara |            | cello          | 1234123412341234 | 06/28          | 324 | postal code     | Postal code is required                                       |
-      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 123              | 06/28          | 324 | card number     | Invalid card number. Please enter a valid card number.        |
-      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | ab/12          | 324 | expiration date | Invalid expiration date. Please use the MM/YY format.         |
-      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 1   | cvv/cvc         | Invalid CVV/CVC code. Please enter a valid 3 or 4 digit code. |
+      | firstName  | lastName | phoneNumber | country | address  | city   | postalCode | cardholderName | cardNumber       | expirationDate | cvv | element_name | true_error_message      |
+      |            | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | first name   | First name is required  |
+      | Celalettin |          | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | last name    | Last name is required   |
+      | Celalettin | Akturk   | 12          | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | phone number | Invalid phone number    |
+      | Celalettin | Akturk   | 1234567891  |         | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | country      | Country is required     |
+      | Celalettin | Akturk   | 1234567891  | Turkey  |          | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | address      | Address is required     |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street |        | 12345      | cello          | 1234123412341234 | 06/28          | 324 | city         | City is required        |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara |            | cello          | 1234123412341234 | 06/28          | 324 | postal code  | Postal code is required |
 
 
+  Scenario Outline: Validate element invalid input error messages are displayed in checkout page
+    When The user clicks on the Booking link
+    And The user clicks on the Car rentals tab
+    And The user clicks on the search button
+    And The user enters "Heathrow Airport","0-50","Manual" and "Small"
+    And The user clicks on search button in filtering page
+    And The user clicks View Dial button of the #1 element
+    And The user clicks on go_to_book button
+    When The user enters user information "<firstName>","<lastName>","<phoneNumber>","<country>","<address>","<city>", "<postalCode>","<cardholderName>","<cardNumber>","<expirationDate>","<cvv>"
+    Then The user validates that "<element_name>" has invalid input error message
+    Examples:
+      | firstName  | lastName | phoneNumber | country | address  | city   | postalCode | cardholderName | cardNumber       | expirationDate | cvv | element_name    |
+      | &&&&&&&&&& | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | first name      |
+      | Celalettin | &&&&&&   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | last name       |
+      | Celalettin | Akturk   | 12!!!!!!!!  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | phone number    |
+      | Celalettin | Akturk   | 1234567891  | !!!!!!  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | country         |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | ^^^^^^^^ | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 324 | address         |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | $$$$$$ | 12345      | cello          | 1234123412341234 | 06/28          | 324 | city            |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | %%%%%      | cello          | 1234123412341234 | 06/28          | 324 | postal code     |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | /////          | ?*?*?*?*?*?*?*?* | 06/28          | 324 | card number     |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | ab/12          | 324 | expiration date |
+      | Celalettin | Akturk   | 1234567891  | Turkey  | A street | Ankara | 12345      | cello          | 1234123412341234 | 06/28          | 1   | cvv/cvc         |

@@ -87,6 +87,7 @@ public class CarRentalHomeStep extends BaseStep {
 		}
 		catch (NoAlertPresentException ex) {
 			LOGGER.error(ex.getMessage());
+			throw new NoAlertPresentException("Error message is not displayed");
 		}
 
 	}
