@@ -68,19 +68,11 @@ public class CarRentalsHomePage extends BasePage {
 		JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 		javascriptExecutor.executeScript("document.querySelector('." + className + "').value='" + value + "'");
 	}
-
 	public String getErrorMessageInHomePage() {
-
 		Alert alert = driver.switchTo().alert();
 		System.out.println(alert.getText());
-
-		if (!alert.getText().isEmpty()) {
-			return alert.getText();
-		}
-		throw new NoAlertPresentException("Error message is not displayed");
-
+		return alert.getText();
 	}
-
 	public void enterThePickUpDate(String date) {
 		List<String> list = Arrays.asList(date.split("/"));
 		actions.keyDown(Keys.TAB).keyUp(Keys.TAB).build().perform();
