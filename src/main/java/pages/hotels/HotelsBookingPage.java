@@ -76,6 +76,7 @@ public class HotelsBookingPage extends BasePage {
 
 	public void selectBookingPerson(String bookingPerson) {
 		List<String> valueOfButtons = bookingPersonOptions.stream().map(WebElement::getText).toList();
+		actions.moveToElement(bookingPersonOptions.get(valueOfButtons.indexOf(bookingPerson))).build().perform();
 		bookingPersonOptions.get(valueOfButtons.indexOf(bookingPerson)).click();
 	}
 
@@ -88,7 +89,13 @@ public class HotelsBookingPage extends BasePage {
 	}
 
 	public void clicksOnNextFinalDetailsButton() {
-		nextFinalDetailsButton.click();
+		actions.moveToElement(nextFinalDetailsButton).build().perform();
+		try {
+			nextFinalDetailsButton.click();
+		}
+		catch (Exception e) {
+			nextFinalDetailsButton.click();
+		}
 	}
 
 	public String getErrorMessage() {

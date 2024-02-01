@@ -15,19 +15,6 @@ public class FlightsHomePage extends BaseStep {
 
 	private static Logger LOGGER = LogManager.getLogger(FlightsHomePage.class);
 
-	@Given("the user is on the Inar Academy homepage")
-	public void the_user_is_on_the_ınar_academy_homepage() {
-		DRIVER.get("https://InarAcademy:Fk160621.@test.inar-academy.com/");
-		LOGGER.info("The user is on the Inar Academy homepage");
-
-	}
-
-	@And("the user clicks on the Booking link")
-	public void theUserOnTheFlightHomePage() {
-		PAGES.getHomePage().clickOnBookingLink();
-		LOGGER.info("The user is on the Booking homepage");
-	}
-
 	@When("the user clicks on the Flights tab")
 	public void theUserClicksOnTheFlightsTab() {
 		PAGES.getFlightsHomePage().clickOnFlightTab();

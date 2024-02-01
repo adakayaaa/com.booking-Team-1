@@ -74,7 +74,9 @@ public class HotelsFilteringPage extends BasePage {
 
 	public void selectFeature(String feature) {
 		List<String> namesOfFeature = features.stream().map(WebElement::getText).toList();
-		actions.moveToElement(features.get(namesOfFeature.indexOf(feature))).perform();
+		BrowserUtils.scrollDownWithPageDown();
+		BrowserUtils.wait(1.0);
+		// actions.moveToElement(features.get(namesOfFeature.indexOf(feature))).perform();
 		features.get(namesOfFeature.indexOf(feature)).findElement(By.xpath("../input")).click();
 		BrowserUtils.wait(1);
 	}

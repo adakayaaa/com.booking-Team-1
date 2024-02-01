@@ -7,11 +7,11 @@
   #1. Navigate to the URL: "test.inar-academy.com"
   #2.
   #3.
-@car_rental
+@car_rental @smoke
 Feature: Car Rental Tab
 
   Background:
-    Given The user navigates to the Inar Academy Home page
+    Given The user on the Inar Academy Home page
 
   Scenario: Validate that user is on the Booking home page
     When The user clicks on the Booking link
