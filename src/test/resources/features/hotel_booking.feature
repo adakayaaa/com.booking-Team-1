@@ -103,7 +103,7 @@ Feature: Booking Hotel Tab
     And The user selects "Yes"
     And The user enters first name as "<FirstName>"
     And The user enters last name as "<LastName>"
-    And The user enters email adresses as "<EmailAddress>"
+    And The user enters email addresses as "<EmailAddress>"
     And The user selects booking person as "<BookingPerson>"
     And The user selects arrival time as "<ArrivalTime>"
     And The user clicks on Next, Final Details button
@@ -131,7 +131,7 @@ Feature: Booking Hotel Tab
     And The user selects "Yes"
     And The user enters first name as "<first name>"
     And The user enters last name as "<last name>"
-    And The user enters email adresses as "kevvas@hotmail.com"
+    And The user enters email addresses as "kevvas@hotmail.com"
     And The user selects booking person as "I'm the main guest"
     And The user selects arrival time as "10:00 PM – 11:00 PM"
     And The user clicks on Next, Final Details button
@@ -191,6 +191,9 @@ Feature: Booking Hotel Tab
       | Musa       |           | m.okur@gmail.com   | Last Name     |
       | Merve      | Genc      |                    | Email Address |
 
+
+    @invalidcheckout
+
   Scenario Outline: Verify complete checkout process with invalid card credentials on checkout page
 
     When The user clicks on the "Stays" tab
@@ -207,7 +210,7 @@ Feature: Booking Hotel Tab
     And The user selects "Yes"
     And The user enters first name as "Kevin"
     And The user enters last name as "Vassel"
-    And The user enters email adresses as "kevvas@gmail.com"
+    And The user enters email addresses as "kevvas@gmail.com"
     And The user selects booking person as "I'm the main guest"
     And The user selects arrival time as "10:00 PM – 11:00 PM"
     And The user clicks on Next, Final Details button
