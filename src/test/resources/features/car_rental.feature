@@ -32,6 +32,9 @@ Feature: Car Rental Tab
     Examples:
       | pick up location | pickup_date | pickup_hour | drop-off_date | drop_hour |
       | Heathrow Airport | 03/15/2024  | 08:00       | 03/25/2024    | 20:00     |
+      | Taj Mahal        | 04/15/2024  | 09:00       | 04/25/2024    | 21:00     |
+      | Grand Bazaar     | 05/15/2024  | 10:00       | 05/25/2024    | 22:00     |
+      | Machu Picchu     | 06/15/2024  | 11:00       | 07/25/2024    | 23:00     |
 
   Scenario Outline: Validate that the user see error message when the user enter invalid inputs
     When The user clicks on the Booking link
