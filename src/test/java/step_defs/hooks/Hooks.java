@@ -27,10 +27,13 @@ public class Hooks {
 	 * @param scenario the Cucumber scenario object
 	 */
 	@Before
+
 	public void setup(Scenario scenario) {
+
 		LOGGER.info("---------------Test Automation has started------------");
 		LOGGER.info("Test Scenario : " + scenario.getName());
 		LOGGER.info("Browser type ----> " + ConfigManager.getProperty("browser"));
+		DriverManager.getWebDriver();
 	}
 
 	/**
